@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="FitTracker"/>
+<meta name="theme-color" content="#060a14"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="application-name" content="FitTracker"/>
+<meta name="description" content="FitTracker — Prise de Masse 6 Semaines"/>
+<title>FitTracker — Prise de Masse</title>
+
+<link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkZpdFRyYWNrZXIg4oCUIFByaXNlIGRlIE1hc3NlIiwKICAic2hvcnRfbmFtZSI6ICJGaXRUcmFja2VyIiwKICAiZGVzY3JpcHRpb24iOiAiVHJhY2tlciBGaXRuZXNzIC0gUHJpc2UgZGUgTWFzc2UgNiBTZW1haW5lcyIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDYwYTE0IiwKICAidGhlbWVfY29sb3IiOiAiIzA2MGExNCIsCiAgIm9yaWVudGF0aW9uIjogInBvcnRyYWl0IiwKICAiaWNvbnMiOiBbXQp9"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMDYwYTE0Ii8+PHRleHQgeD0iOTAiIHk9IjEwNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjcwIiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjRTk0NTYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GVDwvdGV4dD48L3N2Zz4="/>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;background:#060a14;color:#e0eaf8;min-height:100vh;min-height:100dvh;padding-bottom:40px;padding-top:env(safe-area-inset-top);}
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+input[type=number]{-moz-appearance:textfield;}
+input[type=range]{-webkit-appearance:none;height:6px;border-radius:3px;outline:none;cursor:pointer;width:100%;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;cursor:pointer;border:2px solid #060a14;background:#e0eaf8;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:#060a14;}
+::-webkit-scrollbar-thumb{background:#1e3a5a;border-radius:3px;}
+button{font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;}
+textarea{font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;}
+
+.offline-banner{display:none;background:#FF6B6B;color:#fff;text-align:center;padding:6px;font-size:11px;font-weight:700;letter-spacing:0.5px;}
+.offline-banner.show{display:block;}
+
+.container{max-width:860px;margin:0 auto;padding:12px 12px 40px;}
+.header{background:linear-gradient(180deg,#0a1525 0%,#060a14 100%);border-bottom:1px solid #0f2040;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));position:sticky;top:0;z-index:100;}
+.header-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.header-title-row{display:flex;flex-direction:column;}
+.header-badge{font-size:9px;text-transform:uppercase;letter-spacing:4px;color:#E94560;font-weight:700;margin-bottom:4px;}
+.header-title{font-size:17px;font-weight:900;letter-spacing:-0.5px;}
+.header-right{display:flex;align-items:center;gap:12px;}
+.score-ring-wrap{text-align:center;}
+.score-ring-label{font-size:8px;color:#4a7a9b;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px;}
+.badge-box{border-radius:10px;padding:6px 10px;text-align:center;min-width:80px;}
+.badge-emoji{font-size:18px;}
+.badge-label{font-size:9px;font-weight:800;letter-spacing:0.3px;margin-top:2px;}
+
+.section-label{font-size:10px;color:#4a7a9b;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;}
+.week-grid{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;}
+.week-btn{width:46px;height:46px;border-radius:10px;font-weight:800;font-size:12px;cursor:pointer;transition:all 0.15s;position:relative;border:none;}
+.week-dot-top{position:absolute;top:3px;right:3px;width:5px;height:5px;border-radius:50%;background:#FFE66D;}
+.week-dot-bot{position:absolute;bottom:3px;right:3px;width:5px;height:5px;border-radius:50%;}
+.week-legend{display:flex;gap:12px;font-size:9px;color:#4a7a9b;margin-bottom:16px;}
+
+.info-bar{background:#080f1e;border-radius:12px;padding:10px 14px;margin-bottom:14px;border:1px solid #0f2040;}
+.info-bloc{font-weight:700;font-size:12px;margin-bottom:6px;}
+.info-desc{font-size:11px;color:#7a9bbf;line-height:1.5;}
+.deload-badge{display:inline-block;background:#FFE66D18;border:1px solid #FFE66D44;border-radius:8px;padding:4px 10px;font-size:10px;color:#FFE66D;font-weight:700;margin-top:6px;}
+
+.session-tabs{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.session-tab{flex:1;min-width:70px;padding:10px 4px;border-radius:10px;font-weight:800;font-size:11px;cursor:pointer;border:1px solid #0f2040;transition:all 0.15s;white-space:nowrap;}
+
+.session-note{background:#080f1e;border:1px solid #0f2040;border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11px;color:#4a7a9b;line-height:1.4;}
+
+.ex-card{background:#080f1e;border:1px solid #0f2040;border-radius:14px;padding:14px;margin-bottom:10px;}
+.ex-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:8px;}
+.ex-info{flex:1;}
+.ex-name-row{display:flex;align-items:center;gap:8px;margin-bottom:3px;flex-wrap:wrap;}
+.ex-name{font-weight:800;font-size:14px;}
+.trend-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:6px;}
+.ex-sub{font-size:10px;color:#4a7a9b;margin-bottom:2px;}
+.ex-weight{font-size:10px;color:#4ECDC4;font-weight:600;margin-top:2px;}
+.ex-weight-avg{color:#FF9F43;margin-left:6px;}
+.ex-rir{display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;margin-top:3px;}
+.ex-rest{font-size:9px;color:#4a7a9b;margin-top:2px;}
+.yt-btn{background:#FF0000;color:#fff;padding:7px 10px;border-radius:7px;text-decoration:none;font-size:10px;font-weight:800;display:flex;align-items:center;gap:4px;white-space:nowrap;border:none;cursor:pointer;}
+
+.sets-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.sets-table{width:100%;border-collapse:collapse;min-width:280px;}
+.sets-table th{font-size:8px;text-transform:uppercase;letter-spacing:1.5px;color:#4a7a9b;font-weight:700;padding:3px 4px;text-align:center;}
+.sets-table td{padding:4px;}
+.set-num{text-align:center;font-weight:800;font-size:12px;}
+.set-target{text-align:center;font-weight:700;font-size:13px;}
+.set-ok{text-align:center;font-size:14px;}
+.set-input{width:100%;border-radius:8px;padding:8px 4px;color:#e0eaf8;font-size:13px;font-weight:800;text-align:center;outline:none;transition:all 0.2s;font-family:'Space Grotesk',system-ui,sans-serif;}
+
+.ressenti-card{background:#080f1e;border:1px solid #0f2040;border-radius:14px;padding:16px;margin-bottom:12px;}
+.ressenti-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;}
+.ressenti-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.ressenti-label{font-size:12px;font-weight:700;}
+.ressenti-val{font-size:22px;font-weight:900;line-height:1;}
+.ressenti-val span{font-size:11px;color:#4a7a9b;}
+.ressenti-legend{display:flex;justify-content:space-between;font-size:9px;color:#4a7a9b;margin-top:3px;}
+
+.recap-card{background:linear-gradient(135deg,#080f1e,#0d1a2e);border:1px solid #E9456033;border-radius:14px;padding:16px;margin-bottom:12px;}
+.recap-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+.recap-empty{color:#4a7a9b;font-style:italic;text-align:center;padding:16px 0;font-size:13px;}
+.recap-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.stat-box{background:#0a1525;border-radius:10px;padding:10px 12px;}
+.stat-box-label{font-size:8px;color:#4a7a9b;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px;}
+.stat-box-val{font-weight:800;margin-top:4px;font-size:14px;}
+.stat-box-val span{font-size:10px;color:#4a7a9b;}
+.progress-bar-bg{background:#0a1525;border-radius:999px;height:7px;overflow:hidden;}
+.progress-bar-fill{height:100%;border-radius:999px;transition:width 0.6s cubic-bezier(.34,1.56,.64,1);}
+.msg-list{display:flex;flex-direction:column;gap:7px;}
+.msg-item{display:flex;gap:9px;background:#0a1525;border-radius:9px;padding:9px 10px;border-left:3px solid #E94560;}
+.msg-icon{font-size:14px;flex-shrink:0;}
+.msg-text{font-size:11px;line-height:1.5;color:#c0d4e8;}
+
+.notes-card{background:#080f1e;border:1px solid #0f2040;border-radius:14px;padding:14px;margin-bottom:12px;}
+.notes-label{font-weight:700;font-size:12px;color:#7a9bbf;margin-bottom:8px;}
+.notes-textarea{width:100%;background:#0a1525;border:1px solid #0f2040;border-radius:8px;color:#e0eaf8;padding:9px 10px;font-size:12px;min-height:70px;outline:none;resize:vertical;line-height:1.5;}
+
+.chart-card{background:#080f1e;border:1px solid #0f2040;border-radius:14px;padding:14px;}
+.chart-bars{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
+.chart-bar-wrap{flex:1;min-width:36px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;}
+.chart-bar-inner{width:100%;height:48px;display:flex;align-items:flex-end;justify-content:center;}
+.chart-bar{width:80%;border-radius:3px 3px 0 0;transition:height 0.4s;}
+.chart-bar-label{font-size:9px;font-weight:600;}
+.chart-legend{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;}
+.chart-legend-item{display:flex;align-items:center;gap:4px;font-size:9px;color:#4a7a9b;}
+.legend-dot{width:8px;height:8px;border-radius:2px;display:inline-block;}
+
+.section-title{font-weight:800;font-size:14px;margin-bottom:10px;}
+
+.export-card{background:linear-gradient(135deg,#0d1a2e,#162040);border:1px solid #4ECDC444;border-radius:14px;padding:16px;margin-bottom:12px;text-align:center;}
+.export-btn{background:linear-gradient(135deg,#4ECDC4,#45B7AA);color:#060a14;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:900;cursor:pointer;font-family:'Space Grotesk',system-ui,sans-serif;letter-spacing:0.3px;transition:all 0.2s;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;}
+.export-btn:active{transform:scale(0.97);opacity:0.9;}
+.export-hint{font-size:10px;color:#4a7a9b;margin-top:8px;line-height:1.4;}
+.export-success{display:none;background:#4ECDC422;border:1px solid #4ECDC4;border-radius:10px;padding:12px;margin-top:10px;font-size:12px;color:#4ECDC4;font-weight:700;line-height:1.5;}
+.export-preview{display:none;margin-top:12px;text-align:left;}
+.export-preview pre{background:#0a1525;border:1px solid #0f2040;border-radius:8px;padding:10px;font-size:9.5px;color:#c0d4e8;white-space:pre-wrap;word-break:break-word;max-height:220px;overflow-y:auto;line-height:1.5;}
+.export-actions{display:flex;gap:8px;margin-top:8px;}
+.export-action-btn{flex:1;padding:10px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;border:none;font-family:'Space Grotesk',system-ui,sans-serif;}
+
+.install-banner{background:linear-gradient(135deg,#0d1a2e,#162040);border:1px solid #4ECDC444;border-radius:12px;padding:14px;margin-bottom:16px;display:none;}
+.install-banner.show{display:block;}
+.install-title{font-weight:800;font-size:14px;color:#4ECDC4;margin-bottom:6px;}
+.install-steps{font-size:11px;color:#c0d4e8;line-height:1.7;margin-bottom:10px;}
+.install-dismiss{background:#1e3a5a;color:#4a7a9b;border:none;border-radius:8px;padding:8px 16px;font-size:11px;font-weight:700;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div class="offline-banner" id="offline-banner">📡 Mode hors-ligne — tes données sont sauvegardées localement</div>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-title-row">
+      <span class="header-badge">Prise de Masse · 6 Semaines</span>
+      <span class="header-title">FitTracker 💪</span>
+    </div>
+    <div class="header-right">
+      <div class="score-ring-wrap">
+        <div class="score-ring-label">Score séance</div>
+        <svg width="48" height="48" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="24" fill="none" stroke="#0f2040" stroke-width="5"/>
+          <circle id="score-arc" cx="28" cy="28" r="24" fill="none" stroke="#4a7a9b" stroke-width="5"
+            stroke-linecap="round" stroke-dasharray="150.8"
+            stroke-dashoffset="150.8" transform="rotate(-90 28 28)"/>
+          <text id="score-text" x="28" y="33" text-anchor="middle" font-family="Space Grotesk,system-ui" font-weight="900" font-size="14" fill="#4a7a9b">—</text>
+        </svg>
+      </div>
+      <div id="header-badge-box" style="display:none;" class="badge-box">
+        <div id="header-badge-emoji" class="badge-emoji"></div>
+        <div id="header-badge-label" class="badge-label"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="install-banner" id="install-banner">
+    <div class="install-title">📲 Installer FitTracker</div>
+    <div class="install-steps" id="install-steps"></div>
+    <button class="install-dismiss" onclick="dismissInstall()">J'ai compris !</button>
+  </div>
+
+  <div style="margin-bottom:16px;">
+    <div class="section-label">Semaine</div>
+    <div class="week-grid" id="week-grid"></div>
+    <div class="week-legend">
+      <span>🟡 Semaine décharge &nbsp;|&nbsp; ● Données enregistrées</span>
+    </div>
+  </div>
+
+  <div class="info-bar" id="info-bar"></div>
+
+  <div class="session-tabs">
+    <button class="session-tab" id="tab-L" onclick="selectSession('L')">🦵 Lundi</button>
+    <button class="session-tab" id="tab-M" onclick="selectSession('M')">💪 Mardi</button>
+    <button class="session-tab" id="tab-J" onclick="selectSession('J')">🍑 Jeudi</button>
+    <button class="session-tab" id="tab-V" onclick="selectSession('V')">🏋️ Vendredi</button>
+  </div>
+
+  <div class="session-note" id="session-note"></div>
+  <div id="exercises-container"></div>
+
+  <div class="ressenti-card">
+    <div class="section-title">📊 Ressenti de la Séance</div>
+    <div class="ressenti-grid">
+      <div>
+        <div class="ressenti-row">
+          <span class="ressenti-label">😊 Plaisir</span>
+          <span class="ressenti-val" id="plaisir-val">5<span>/10</span></span>
+        </div>
+        <input type="range" min="1" max="10" value="5" id="plaisir-range"
+          style="accent-color:#FFE66D;"
+          oninput="updateMeta('plaisir',this.value);updateRangeStyle(this,'#FFE66D')"/>
+        <div class="ressenti-legend"><span>😭 Horrible</span><span>😍 Génial</span></div>
+      </div>
+      <div>
+        <div class="ressenti-row">
+          <span class="ressenti-label">⚡ Énergie</span>
+          <span class="ressenti-val" id="fatigue-val">5<span>/10</span></span>
+        </div>
+        <input type="range" min="1" max="10" value="5" id="fatigue-range"
+          style="accent-color:#4ECDC4;"
+          oninput="updateMeta('fatigue',this.value);updateRangeStyle(this,'#4ECDC4')"/>
+        <div class="ressenti-legend"><span>😴 Épuisé</span><span>⚡ Pleine forme</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recap-card">
+    <div class="recap-header">
+      <div class="section-title" style="margin-bottom:0;">🧠 Analyse Coach</div>
+      <div id="recap-badge" style="display:none;" class="badge-box">
+        <span id="recap-badge-emoji"></span>
+        <div id="recap-badge-label" class="badge-label"></div>
+      </div>
+    </div>
+    <div id="recap-body"></div>
+  </div>
+
+  <div class="notes-card">
+    <div class="notes-label">📝 Notes libres</div>
+    <textarea class="notes-textarea" id="notes-area"
+      placeholder="Comment tu t'es senti ? Un PR battu ? Une douleur à surveiller ? Des ajustements de charges ?"
+      oninput="updateMeta('notes',this.value)"></textarea>
+  </div>
+
+  <div class="export-card" id="export-card">
+    <button class="export-btn" onclick="generateExport()">
+      📤 Exporter ma séance pour mon coach
+    </button>
+    <div class="export-hint">Génère un résumé complet à envoyer à ton coach sur Claude pour analyse et ajustements.</div>
+    <div class="export-success" id="export-success">
+      ✅ Copié ! Colle-le directement dans ta conversation Claude.
+    </div>
+    <div class="export-preview" id="export-preview">
+      <pre id="export-text"></pre>
+      <div class="export-actions">
+        <button class="export-action-btn" style="background:#4ECDC4;color:#060a14;" onclick="copyExport()">📋 Copier</button>
+        <button class="export-action-btn" style="background:#1e3a5a;color:#e0eaf8;" onclick="shareExport()">📤 Partager</button>
+        <button class="export-action-btn" style="background:#0f2040;color:#4a7a9b;" onclick="closeExportPreview()">✕ Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="section-title">📈 Progression sur 6 semaines</div>
+    <div class="chart-bars" id="chart-bars"></div>
+    <div class="chart-legend">
+      <div class="chart-legend-item"><span class="legend-dot" style="background:#4ECDC4"></span> ≥ 7 Excellent</div>
+      <div class="chart-legend-item"><span class="legend-dot" style="background:#FFE66D"></span> ≥ 5 Bien</div>
+      <div class="chart-legend-item"><span class="legend-dot" style="background:#FF6B6B"></span> &lt; 5 À améliorer</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// SERVICE WORKER
+// ============================================================
+if ('serviceWorker' in navigator) {
+  const SW_CODE = `
+    self.addEventListener('install', e => { self.skipWaiting(); });
+    self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
+    self.addEventListener('fetch', e => {
+      if (e.request.mode === 'navigate') {
+        e.respondWith(fetch(e.request).catch(() => caches.match('/')));
+      }
+    });
+  `;
+  const swBlob = new Blob([SW_CODE], { type: 'application/javascript' });
+  navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
+}
+
+// ============================================================
+// OFFLINE
+// ============================================================
+function updateOnlineStatus() {
+  document.getElementById('offline-banner').classList.toggle('show', !navigator.onLine);
+}
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+updateOnlineStatus();
+
+// ============================================================
+// INSTALL PROMPT
+// ============================================================
+function showInstallBanner() {
+  if (localStorage.getItem('ft-install-dismissed')) return;
+  if (window.matchMedia('(display-mode: standalone)').matches) return;
+  if (window.navigator.standalone === true) return;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isAndroid = /Android/.test(navigator.userAgent);
+  const steps = document.getElementById('install-steps');
+  if (isIOS) {
+    steps.innerHTML = '1️⃣ Appuie sur le bouton <strong>Partager</strong> (↑) en bas de Safari<br>2️⃣ Choisis <strong>"Sur l\'écran d\'accueil"</strong><br>3️⃣ Appuie <strong>Ajouter</strong> — c\'est fait ! 🎉';
+  } else if (isAndroid) {
+    steps.innerHTML = '1️⃣ Appuie sur le menu <strong>⋮</strong> en haut à droite de Chrome<br>2️⃣ Choisis <strong>"Ajouter à l\'écran d\'accueil"</strong><br>3️⃣ Confirme — c\'est fait ! 🎉';
+  } else {
+    steps.innerHTML = 'Ouvre cette page sur ton téléphone et ajoute-la à ton écran d\'accueil pour l\'utiliser comme une app même hors-ligne !';
+  }
+  document.getElementById('install-banner').classList.add('show');
+}
+function dismissInstall() {
+  document.getElementById('install-banner').classList.remove('show');
+  localStorage.setItem('ft-install-dismissed', '1');
+}
+
+// ============================================================
+// DATA — PROGRAMME PRISE DE MASSE 6 SEMAINES
+// weeks[] = [{sets, reps (min numérique), repsDisplay, load}, ...] pour S1 à S6
+// ============================================================
+const EXERCISES = {
+  // ── LUNDI — Lower Quad Dominant ──────────────────────────────
+  L: [
+    {
+      id:"L1", name:"Squat Barre Haute", sub:"Barre libre — 82-87% 1RM",
+      muscle:"Quadriceps · Fessiers", rir:2, rest:"4 min",
+      yt:"https://www.youtube.com/results?search_query=squat+barre+haute+technique+francais",
+      weeks:[
+        {sets:4, reps:5, repsDisplay:"5", load:"~120-123 kg"},
+        {sets:4, reps:5, repsDisplay:"5", load:"~122,5 kg"},
+        {sets:5, reps:5, repsDisplay:"5", load:"~125 kg"},
+        {sets:5, reps:5, repsDisplay:"5", load:"~127,5 kg"},
+        {sets:5, reps:5, repsDisplay:"5", load:"~130 kg"},
+        {sets:3, reps:5, repsDisplay:"5", load:"~100 kg (deload)"},
+      ]
+    },
+    {
+      id:"L2", name:"Leg Press Unilatéral", sub:"Un pied centré — amplitude complète",
+      muscle:"Quadriceps · Fessiers (unilatéral)", rir:2, rest:"2 min/jambe",
+      yt:"https://www.youtube.com/results?search_query=leg+press+unilateral+technique",
+      weeks:[
+        {sets:4, reps:10, repsDisplay:"10/jambe", load:"Autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10/jambe", load:"Autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10/jambe", load:"Autorégulation"},
+        {sets:5, reps:10, repsDisplay:"10/jambe", load:"Autorégulation"},
+        {sets:5, reps:10, repsDisplay:"10/jambe", load:"Autorégulation"},
+        {sets:3, reps:10, repsDisplay:"10/jambe", load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"L3", name:"Pendulum Squat ⭐", sub:"Pause 1s en bas — tension continue",
+      muscle:"Quadriceps (isolation supérieure)", rir:2, rest:"2 min",
+      yt:"https://www.youtube.com/results?search_query=pendulum+squat+technique+tutorial",
+      weeks:[
+        {sets:4, reps:10, repsDisplay:"10-12", load:"Autorégulation"},
+        {sets:4, reps:12, repsDisplay:"12",    load:"Autorégulation"},
+        {sets:4, reps:12, repsDisplay:"12",    load:"Autorégulation"},
+        {sets:4, reps:12, repsDisplay:"12",    load:"Autorégulation"},
+        {sets:5, reps:12, repsDisplay:"12",    load:"Autorégulation"},
+        {sets:3, reps:10, repsDisplay:"10",    load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"L4", name:"Leg Extension", sub:"Rotation interne + squeeze 2s en haut",
+      muscle:"Quadriceps · Vaste interne", rir:1, rest:"75 sec",
+      yt:"https://www.youtube.com/results?search_query=leg+extension+vaste+interne+technique",
+      weeks:[
+        {sets:3, reps:14, repsDisplay:"14-16", load:"Autorégulation"},
+        {sets:3, reps:15, repsDisplay:"15-16", load:"Autorégulation"},
+        {sets:3, reps:16, repsDisplay:"16",    load:"Autorégulation"},
+        {sets:3, reps:16, repsDisplay:"16",    load:"Autorégulation"},
+        {sets:4, reps:16, repsDisplay:"16",    load:"Autorégulation"},
+        {sets:2, reps:14, repsDisplay:"14",    load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"L5", name:"Standing Calf Raise Machine", sub:"Pause 2s en étirement complet",
+      muscle:"Gastrocnémien", rir:1, rest:"60 sec",
+      yt:"https://www.youtube.com/results?search_query=standing+calf+raise+technique",
+      weeks:[
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:3, reps:15, repsDisplay:"15", load:"Autorégulation"},
+      ]
+    },
+  ],
+
+  // ── MARDI — Upper Pull + Pectoraux ───────────────────────────
+  M: [
+    {
+      id:"M1", name:"Tractions Lestées ⭐", sub:"Pronation — 1RM départ : +40 kg",
+      muscle:"Grand dorsal · Biceps · Rhomboïdes", rir:2, rest:"4 min",
+      yt:"https://www.youtube.com/results?search_query=tractions+lestees+technique+pronation",
+      weeks:[
+        {sets:5, reps:5, repsDisplay:"5", load:"+25 kg"},
+        {sets:5, reps:5, repsDisplay:"5", load:"+27,5 kg"},
+        {sets:5, reps:4, repsDisplay:"4", load:"+30 kg"},
+        {sets:4, reps:4, repsDisplay:"4", load:"+32,5 kg — TEST intermédiaire semaine 4"},
+        {sets:4, reps:3, repsDisplay:"3-4", load:"+35 kg"},
+        {sets:3, reps:5, repsDisplay:"5", load:"+20 kg (deload) → TEST FINAL 1RM"},
+      ]
+    },
+    {
+      id:"M2", name:"Rowing Yates Barre", sub:"Dos plat — tirage ceinture — coudes 45°",
+      muscle:"Dos moyen · Grand dorsal · Biceps", rir:2, rest:"3 min",
+      yt:"https://www.youtube.com/results?search_query=yates+row+barbell+technique+french",
+      weeks:[
+        {sets:4, reps:6, repsDisplay:"6", load:"Lourd — autorégulation"},
+        {sets:4, reps:6, repsDisplay:"6", load:"Lourd — autorégulation"},
+        {sets:4, reps:6, repsDisplay:"6", load:"Lourd — autorégulation"},
+        {sets:5, reps:6, repsDisplay:"6", load:"Lourd — autorégulation"},
+        {sets:5, reps:6, repsDisplay:"6", load:"Lourd — autorégulation"},
+        {sets:3, reps:6, repsDisplay:"6", load:"Modéré — autorégulation"},
+      ]
+    },
+    {
+      id:"M3", name:"Tractions Clusters ⭐", sub:"5r / 15s / 5r / 15s / 4r = 1 cluster",
+      muscle:"Grand dorsal · Biceps · Rhomboïdes", rir:1, rest:"2 min entre clusters",
+      yt:"https://www.youtube.com/results?search_query=cluster+sets+pull+ups+technique",
+      weeks:[
+        {sets:4, reps:14, repsDisplay:"~14 (cluster)", load:"Poids du corps"},
+        {sets:4, reps:14, repsDisplay:"~14 (cluster)", load:"Poids du corps"},
+        {sets:4, reps:14, repsDisplay:"~14 (cluster)", load:"Poids du corps"},
+        {sets:5, reps:14, repsDisplay:"~14 (cluster)", load:"Poids du corps"},
+        {sets:5, reps:14, repsDisplay:"~14 (cluster)", load:"Poids du corps"},
+        {sets:3, reps:14, repsDisplay:"~14 (cluster)", load:"Poids du corps"},
+      ]
+    },
+    {
+      id:"M4", name:"Rowing 1 Bras Haltère", sub:"Rotation scapulaire complète",
+      muscle:"Grand dorsal · Dos moyen", rir:2, rest:"90 sec",
+      yt:"https://www.youtube.com/results?search_query=rowing+un+bras+haltere+technique",
+      weeks:[
+        {sets:3, reps:12, repsDisplay:"12/bras", load:"Autorégulation"},
+        {sets:3, reps:12, repsDisplay:"12/bras", load:"Autorégulation"},
+        {sets:3, reps:12, repsDisplay:"12/bras", load:"Autorégulation"},
+        {sets:4, reps:12, repsDisplay:"12/bras", load:"Autorégulation"},
+        {sets:4, reps:12, repsDisplay:"12/bras", load:"Autorégulation"},
+        {sets:2, reps:12, repsDisplay:"12/bras", load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"M5", name:"Face Pull Poulie Haute", sub:"Coudes hauts — rotation externe finale",
+      muscle:"Deltoïdes postérieurs · Coiffe des rotateurs", rir:1, rest:"60 sec",
+      yt:"https://www.youtube.com/results?search_query=face+pull+poulie+haute+technique",
+      weeks:[
+        {sets:3, reps:15, repsDisplay:"15", load:"Léger"},
+        {sets:3, reps:15, repsDisplay:"15", load:"Léger"},
+        {sets:3, reps:15, repsDisplay:"15", load:"Léger"},
+        {sets:3, reps:15, repsDisplay:"15", load:"Léger"},
+        {sets:3, reps:15, repsDisplay:"15", load:"Léger"},
+        {sets:2, reps:15, repsDisplay:"15", load:"Léger"},
+      ]
+    },
+    {
+      id:"M6", name:"Curl Barre EZ", sub:"Tempo 3-0-1-0",
+      muscle:"Biceps brachial", rir:2, rest:"90 sec",
+      yt:"https://www.youtube.com/results?search_query=curl+barre+ez+technique+francais",
+      weeks:[
+        {sets:3, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:3, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:3, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:3, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:2, reps:10, repsDisplay:"10", load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"M7", name:"Curl Marteau", sub:"Superset possible avec EZ en S4-S5",
+      muscle:"Biceps · Brachial · Brachio-radial", rir:2, rest:"90 sec",
+      yt:"https://www.youtube.com/results?search_query=curl+marteau+hammer+curl+technique",
+      weeks:[
+        {sets:3, reps:12, repsDisplay:"12", load:"Autorégulation"},
+        {sets:3, reps:12, repsDisplay:"12", load:"Autorégulation"},
+        {sets:3, reps:12, repsDisplay:"12", load:"Autorégulation"},
+        {sets:3, reps:12, repsDisplay:"12", load:"Autorégulation"},
+        {sets:4, reps:12, repsDisplay:"12", load:"Autorégulation"},
+        {sets:2, reps:12, repsDisplay:"12", load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"M8", name:"Développé Incliné Haltères", sub:"Angle 30-35° — pause 1s en bas",
+      muscle:"Pectoraux (portion claviculaire)", rir:2, rest:"2 min",
+      yt:"https://www.youtube.com/results?search_query=developpe+incline+halteres+technique",
+      weeks:[
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:5, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:5, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:3, reps:10, repsDisplay:"10", load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"M9", name:"Écarté Poulie Haute (crossover)", sub:"Pause 1s en contraction — faisceau inférieur",
+      muscle:"Pectoraux (faisceau sternal/inférieur)", rir:1, rest:"90 sec",
+      yt:"https://www.youtube.com/results?search_query=cable+crossover+ecarte+poulie+technique",
+      weeks:[
+        {sets:3, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+        {sets:3, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+        {sets:3, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+        {sets:3, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+        {sets:4, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+        {sets:2, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+      ]
+    },
+  ],
+
+  // ── JEUDI — Lower Postérieur / Fessiers ──────────────────────
+  J: [
+    {
+      id:"J1", name:"Romanian Deadlift (RDL)", sub:"Descente à tension max ischio — dos neutre",
+      muscle:"Ischio-jambiers · Fessiers · Érecteurs", rir:2, rest:"3,5 min",
+      yt:"https://www.youtube.com/results?search_query=romanian+deadlift+technique+francais",
+      weeks:[
+        {sets:4, reps:6, repsDisplay:"6", load:"~120 kg"},
+        {sets:4, reps:6, repsDisplay:"6", load:"~125 kg"},
+        {sets:4, reps:6, repsDisplay:"6", load:"~130 kg"},
+        {sets:5, reps:6, repsDisplay:"6", load:"~135 kg"},
+        {sets:5, reps:6, repsDisplay:"6", load:"~140 kg"},
+        {sets:3, reps:6, repsDisplay:"6", load:"~100 kg (deload)"},
+      ]
+    },
+    {
+      id:"J2", name:"Leg Curl Couché (Lying Leg Curl)", sub:"Pieds en dorsiflexion — pause 2s en flexion",
+      muscle:"Ischio-jambiers (biceps fémoral)", rir:2, rest:"2 min",
+      yt:"https://www.youtube.com/results?search_query=leg+curl+couche+technique+dorsiflexion",
+      weeks:[
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:5, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:5, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:3, reps:10, repsDisplay:"10", load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"J3", name:"Hip Thrust Barre", sub:"Antéversion légère en haut — fessiers pas lombaires",
+      muscle:"Fessiers · Grand fessier", rir:2, rest:"2,5 min",
+      yt:"https://www.youtube.com/results?search_query=hip+thrust+barre+technique+francais",
+      weeks:[
+        {sets:4, reps:10, repsDisplay:"10-12", load:"~100 kg"},
+        {sets:4, reps:12, repsDisplay:"12",    load:"~107,5 kg"},
+        {sets:4, reps:12, repsDisplay:"12",    load:"~115 kg"},
+        {sets:5, reps:12, repsDisplay:"12",    load:"~120 kg"},
+        {sets:5, reps:12, repsDisplay:"12",    load:"~125 kg"},
+        {sets:3, reps:10, repsDisplay:"10",    load:"~90 kg (deload)"},
+      ]
+    },
+    {
+      id:"J4", name:"Bulgarian Split Squat", sub:"Pied avant avancé — cible fessiers",
+      muscle:"Fessiers · Quadriceps · Adducteurs", rir:1, rest:"2 min (alt. jambes)",
+      yt:"https://www.youtube.com/results?search_query=bulgarian+split+squat+technique+francais",
+      weeks:[
+        {sets:3, reps:10, repsDisplay:"10/jambe", load:"Haltères — autorégulation"},
+        {sets:3, reps:10, repsDisplay:"10/jambe", load:"Haltères — autorégulation"},
+        {sets:3, reps:10, repsDisplay:"10/jambe", load:"Haltères — autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10/jambe", load:"Haltères — autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10/jambe", load:"Haltères — autorégulation"},
+        {sets:2, reps:10, repsDisplay:"10/jambe", load:"Haltères — autorégulation"},
+      ]
+    },
+    {
+      id:"J5", name:"Adducteurs Machine", sub:"Pause 2s en fermeture — cuisse interne",
+      muscle:"Adducteurs · Cuisse interne", rir:1, rest:"75 sec",
+      yt:"https://www.youtube.com/results?search_query=adducteurs+machine+technique",
+      weeks:[
+        {sets:3, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:3, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:3, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:3, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:2, reps:15, repsDisplay:"15", load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"J6", name:"Seated Calf Raise", sub:"Tempo 3-0-3-0 — cible soléaire",
+      muscle:"Soléaire (complémentaire lundi)", rir:1, rest:"75 sec",
+      yt:"https://www.youtube.com/results?search_query=seated+calf+raise+technique+soleus",
+      weeks:[
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:4, reps:15, repsDisplay:"15", load:"Autorégulation"},
+        {sets:3, reps:15, repsDisplay:"15", load:"Autorégulation"},
+      ]
+    },
+  ],
+
+  // ── VENDREDI — Upper Push + Tractions Volume ─────────────────
+  V: [
+    {
+      id:"V1", name:"Développé Couché Barre", sub:"Touche poitrine — pause 1s — poussée explosive",
+      muscle:"Pectoraux · Deltoïdes antérieurs · Triceps", rir:2, rest:"4 min",
+      yt:"https://www.youtube.com/results?search_query=developpe+couche+barre+technique+francais",
+      weeks:[
+        {sets:4, reps:5, repsDisplay:"5", load:"~93 kg (85%)"},
+        {sets:4, reps:5, repsDisplay:"5", load:"~95 kg"},
+        {sets:4, reps:5, repsDisplay:"5", load:"~97,5 kg"},
+        {sets:5, reps:5, repsDisplay:"5", load:"~100 kg"},
+        {sets:5, reps:5, repsDisplay:"5", load:"~102,5 kg"},
+        {sets:3, reps:5, repsDisplay:"5", load:"~82,5 kg (deload)"},
+      ]
+    },
+    {
+      id:"V2", name:"Développé Militaire Haltères", sub:"Assis strict — aucun coup de reins",
+      muscle:"Deltoïdes · Trapèzes · Triceps", rir:2, rest:"2 min",
+      yt:"https://www.youtube.com/results?search_query=developpe+militaire+halteres+technique",
+      weeks:[
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:4, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:5, reps:10, repsDisplay:"10", load:"Autorégulation"},
+        {sets:3, reps:10, repsDisplay:"10", load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"V3", name:"Écarté Poulie Basse (cable fly)", sub:"Amplitude max — croisement — pause 1s",
+      muscle:"Pectoraux (faisceau sternal)", rir:1, rest:"90 sec",
+      yt:"https://www.youtube.com/results?search_query=cable+fly+ecarte+poulie+basse+technique",
+      weeks:[
+        {sets:3, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+        {sets:3, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+        {sets:3, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+        {sets:3, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+        {sets:4, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+        {sets:2, reps:14, repsDisplay:"14", load:"Léger-modéré"},
+      ]
+    },
+    {
+      id:"V4", name:"Dips Lestés", sub:"Corps légèrement incliné → pectoraux",
+      muscle:"Pectoraux inférieurs · Triceps", rir:2, rest:"2 min",
+      yt:"https://www.youtube.com/results?search_query=dips+lestes+technique+pectoraux",
+      weeks:[
+        {sets:3, reps:8,  repsDisplay:"8-10",  load:"+7,5 kg"},
+        {sets:3, reps:9,  repsDisplay:"9-10",  load:"+7,5 kg"},
+        {sets:3, reps:10, repsDisplay:"10",    load:"+10 kg"},
+        {sets:4, reps:10, repsDisplay:"10",    load:"+10 kg"},
+        {sets:4, reps:10, repsDisplay:"10",    load:"+12,5 kg"},
+        {sets:2, reps:8,  repsDisplay:"8",     load:"+5 kg (deload)"},
+      ]
+    },
+    {
+      id:"V5", name:"Rope Pushdown Poulie Haute", sub:"Ouverture complète de la corde en bas",
+      muscle:"Triceps (3 chefs)", rir:1, rest:"75 sec",
+      yt:"https://www.youtube.com/results?search_query=triceps+rope+pushdown+technique",
+      weeks:[
+        {sets:3, reps:14, repsDisplay:"14", load:"Autorégulation"},
+        {sets:3, reps:14, repsDisplay:"14", load:"Autorégulation"},
+        {sets:3, reps:14, repsDisplay:"14", load:"Autorégulation"},
+        {sets:3, reps:14, repsDisplay:"14", load:"Autorégulation"},
+        {sets:4, reps:14, repsDisplay:"14", load:"Autorégulation"},
+        {sets:2, reps:14, repsDisplay:"14", load:"Autorégulation"},
+      ]
+    },
+    {
+      id:"V6", name:"Chin-ups Prise Supination ⭐", sub:"Coudes → sol en haut — squeeze dos 1s",
+      muscle:"Grand dorsal · Biceps (angle supination)", rir:2, rest:"3 min",
+      yt:"https://www.youtube.com/results?search_query=chin+ups+supination+technique+francais",
+      weeks:[
+        {sets:4, reps:6, repsDisplay:"6-8", load:"Poids du corps"},
+        {sets:4, reps:8, repsDisplay:"8",   load:"Poids du corps"},
+        {sets:4, reps:8, repsDisplay:"8",   load:"Poids du corps"},
+        {sets:4, reps:8, repsDisplay:"8",   load:"Poids du corps"},
+        {sets:5, reps:8, repsDisplay:"8",   load:"Poids du corps"},
+        {sets:3, reps:6, repsDisplay:"6",   load:"Poids du corps"},
+      ]
+    },
+    {
+      id:"V7", name:"Tractions AMRAP ⭐", sub:"MAX reps propres — objectif S1 : 25-30 total",
+      muscle:"Grand dorsal · Biceps · Rhomboïdes", rir:0, rest:"2 min",
+      yt:"https://www.youtube.com/results?search_query=tractions+amrap+max+reps+technique",
+      weeks:[
+        {sets:3, reps:0, repsDisplay:"MAX", load:"Poids du corps"},
+        {sets:3, reps:0, repsDisplay:"MAX", load:"Poids du corps"},
+        {sets:3, reps:0, repsDisplay:"MAX", load:"Poids du corps"},
+        {sets:3, reps:0, repsDisplay:"MAX", load:"Poids du corps"},
+        {sets:3, reps:0, repsDisplay:"MAX", load:"Poids du corps"},
+        {sets:3, reps:0, repsDisplay:"MAX", load:"Poids du corps"},
+      ]
+    },
+  ],
+};
+
+const SESSION_NOTES = {
+  L:"🦵 Lower Quad Dominant · Volume : 15 séries quadriceps · Priorité : Pendulum Squat après Squat lourd",
+  M:"💪 Upper Pull + Pectoraux · ⭐ Tractions lestées EN PREMIER (système nerveux frais) · Ne jamais sacrifier cet exercice",
+  J:"🍑 Lower Postérieur & Fessiers · Volume : 14 séries ischio/fessiers · Rattrapage jambes prioritaire",
+  V:"🏋️ Upper Push + Volume Tractions · Bench lourd d'abord · Tracker le total de reps tractions chaque semaine",
+};
+
+const SESSION_COLORS = {
+  L:"#E94560",
+  M:"#4ECDC4",
+  J:"#FF9F43",
+  V:"#A8E6CF",
+};
+
+const BLOC_META = {
+  1:{label:"Phase 1 — Installation & Références",   color:"#4ECDC4", emoji:"🔷", desc:"Apprendre les charges. RIR 2-3. Pas d'échec. Construire les patterns moteurs."},
+  2:{label:"Phase 2 — Intensification & Volume",    color:"#FF9F43", emoji:"🟠", desc:"Montée en charge progressive. Introduction pause-rep S3. Test intermédiaire tractions S4."},
+  3:{label:"Phase 3 — Pic & Décharge",              color:"#FFE66D", emoji:"🟡", desc:"S5 = semaine la plus dure. S6 = DELOAD obligatoire. Test final tractions + AMRAP."},
+};
+
+// Semaines → bloc
+function getBloc(w) {
+  if (w <= 2) return 1;
+  if (w <= 5) return 2;
+  return 3;
+}
+
+const WEEK_META = [
+  {label:"S1 — Installation", note:"Charges de référence. RIR 2-3. Aucun échec.",           isDeload:false},
+  {label:"S2 — Montée",       note:"+1 série grands groupes. RIR 2. Effort réel.",            isDeload:false},
+  {label:"S3 — Intensification", note:"+1 série. Pause-rep sur mouvements lourds. RIR 2.",   isDeload:false},
+  {label:"S4 — Test ⭐",      note:"Même volume S3. TEST INTERMÉDIAIRE tractions en fin de semaine.",isDeload:false},
+  {label:"S5 — Pic 🔥",       note:"Semaine la plus dure. Pic volume 18 séries. RIR 1. Tout donner.", isDeload:false},
+  {label:"S6 — Décharge 🏁",  note:"Volume -40%. RIR 2-3. TEST FINAL tractions lesté + AMRAP poids corps.", isDeload:true},
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let selectedWeek = 1;
+let selectedSession = "L";
+let appData = {};
+let lastExportText = "";
+const STORAGE_KEY = "fittracker-masse-v1";
+
+function saveData() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appData)); } catch(e) {} }
+function loadData() { try { const d = localStorage.getItem(STORAGE_KEY); if (d) appData = JSON.parse(d); } catch(e) {} }
+function getKey(w, s) { return "w" + w + "-" + s; }
+function getEntry(w, s) { return appData[getKey(w, s)] || {}; }
+
+// ============================================================
+// EXPORT ENGINE
+// ============================================================
+function generateExport() {
+  const w = selectedWeek;
+  const s = selectedSession;
+  const meta = WEEK_META[w-1];
+  const bloc = getBloc(w);
+  const bm = BLOC_META[bloc];
+  const entry = getEntry(w, s);
+  const exercises = EXERCISES[s];
+  const recap = buildRecap(s, w);
+  const today = new Date().toLocaleDateString('fr-FR', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+
+  let txt = "";
+  txt += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+  txt += "📊 RAPPORT DE SÉANCE — FITTRACKER\n";
+  txt += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
+  txt += `📅 Date : ${today}\n`;
+  txt += `📍 Semaine ${w}/6 · Séance ${s} · ${bm.emoji} ${meta.label}\n`;
+  txt += `⚙️ ${meta.note}\n`;
+  txt += `🏆 Score séance : ${recap.score}/10${recap.badge ? ' — ' + recap.badge.emoji + ' ' + recap.badge.label : ''}\n\n`;
+
+  txt += "──── DÉTAIL DES EXERCICES ────\n\n";
+  exercises.forEach((ex, eIdx) => {
+    const wd = ex.weeks[w-1];
+    const sd = entry.sets?.[eIdx] || {};
+    const exStat = recap.exStats[eIdx];
+    const prevEntry = w > 1 ? getEntry(w-1, s) : {};
+    const psd = prevEntry.sets?.[eIdx] || {};
+
+    txt += `▸ ${ex.name}\n`;
+    txt += `  ${ex.sub} · ${ex.muscle}\n`;
+    txt += `  Cible : ${wd.sets} × ${wd.repsDisplay} reps · RIR ${ex.rir} · Charge conseillée : ${wd.load}\n`;
+
+    let hasData = false;
+    for (let sIdx = 0; sIdx < wd.sets; sIdx++) {
+      const d = sd[sIdx];
+      if (d && (d.reps || d.weight)) {
+        hasData = true;
+        const reps = d.reps || '—';
+        const weight = d.weight || '—';
+        const ok = wd.reps === 0 ? '✅' : (d.reps && parseInt(d.reps) >= wd.reps ? '✅' : '⚠️');
+        txt += `  Série ${sIdx+1} : ${reps} reps × ${weight} kg ${ok}\n`;
+      }
+    }
+    if (!hasData) txt += `  ⬜ Non rempli\n`;
+    if (exStat.avgW) {
+      txt += `  📊 Moy. charge : ${exStat.avgW} kg`;
+      if (exStat.prevAvgW) txt += ` (S${w-1} : ${exStat.prevAvgW} kg)`;
+      if (exStat.weightTrend !== null) {
+        const t = exStat.weightTrend;
+        txt += t > 0 ? ` ▲ +${t.toFixed(1)} kg` : t < 0 ? ` ▼ ${t.toFixed(1)} kg` : ' = stable';
+      }
+      txt += '\n';
+    }
+    txt += '\n';
+  });
+
+  txt += "──── RESSENTI ────\n\n";
+  txt += `😊 Plaisir : ${entry.plaisir !== undefined ? entry.plaisir : 'Non renseigné'}/10\n`;
+  txt += `⚡ Énergie : ${entry.fatigue !== undefined ? entry.fatigue : 'Non renseigné'}/10\n\n`;
+
+  txt += "──── STATISTIQUES ────\n\n";
+  txt += `📈 Séries complétées : ${recap.totalDone}/${recap.totalTSets} (${recap.setsRatio}%)\n`;
+  txt += `📈 Reps atteintes : ${recap.repsRatio}%\n\n`;
+
+  if (entry.notes) {
+    txt += "──── NOTES ────\n\n";
+    txt += `${entry.notes}\n\n`;
+  }
+
+  const history = [];
+  for (let pw = 1; pw < w; pw++) {
+    const pr = buildRecap(s, pw);
+    if (pr.totalDone > 0) history.push({week:pw, score:pr.score, setsRatio:pr.setsRatio, repsRatio:pr.repsRatio});
+  }
+  if (history.length > 0) {
+    txt += `──── HISTORIQUE SÉANCE ${s} ────\n\n`;
+    history.forEach(h => { txt += `  S${h.week} : Score ${h.score}/10 · Séries ${h.setsRatio}% · Reps ${h.repsRatio}%\n`; });
+    txt += '\n';
+  }
+
+  txt += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+  txt += "💬 Colle ce rapport dans Claude et demande :\n";
+  txt += '"Analyse ma séance et propose des ajustements"\n';
+  txt += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+
+  lastExportText = txt;
+  document.getElementById('export-text').textContent = txt;
+  document.getElementById('export-preview').style.display = 'block';
+  document.getElementById('export-success').style.display = 'none';
+  document.getElementById('export-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function copyExport() {
+  if (!lastExportText) return;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(lastExportText).then(showExportSuccess).catch(fallbackCopy);
+  } else { fallbackCopy(); }
+}
+function fallbackCopy() {
+  const ta = document.createElement('textarea');
+  ta.value = lastExportText;
+  ta.style.position = 'fixed'; ta.style.left = '-9999px';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); showExportSuccess(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+function shareExport() {
+  if (!lastExportText) return;
+  if (navigator.share) { navigator.share({title:`Séance ${selectedSession} — S${selectedWeek}`, text:lastExportText}).catch(()=>{}); }
+  else { copyExport(); }
+}
+function showExportSuccess() {
+  const el = document.getElementById('export-success');
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 3000);
+}
+function closeExportPreview() {
+  document.getElementById('export-preview').style.display = 'none';
+  document.getElementById('export-success').style.display = 'none';
+}
+
+// ============================================================
+// RECAP ENGINE
+// ============================================================
+function buildRecap(sess, week) {
+  const exercises = EXERCISES[sess];
+  const entry = getEntry(week, sess);
+  const prevEntry = week > 1 ? getEntry(week-1, sess) : {};
+
+  let totalTSets=0, totalDone=0, totalTReps=0, totalDoneReps=0;
+
+  const exStats = exercises.map((ex, ei) => {
+    const wd = ex.weeks[week-1];
+    const tSets = wd.sets;
+    const tReps = wd.reps;
+    const isAmrap = tReps === 0;
+    const sd = entry.sets?.[ei] || {};
+    const psd = prevEntry.sets?.[ei] || {};
+
+    let doneSets=0, doneReps=0, totalW=0, wCount=0, prevTW=0, prevWC=0;
+
+    for (let s=0; s<tSets; s++) {
+      totalTSets++;
+      if (!isAmrap) totalTReps += tReps;
+      if (sd[s]) {
+        const r = parseInt(sd[s].reps) || 0;
+        const ww = parseFloat(sd[s].weight) || 0;
+        doneSets++; doneReps += r; totalDone++;
+        if (!isAmrap) totalDoneReps += r;
+        if (ww > 0) { totalW += ww; wCount++; }
+      }
+    }
+    const prevWdSets = week > 1 ? (ex.weeks[week-2]?.sets || tSets) : tSets;
+    for (let s=0; s<prevWdSets; s++) {
+      if (psd[s]) { const ww = parseFloat(psd[s].weight)||0; if(ww>0){prevTW+=ww;prevWC++;}}
+    }
+    const avgW = wCount > 0 ? (totalW/wCount).toFixed(1) : null;
+    const prevAvgW = prevWC > 0 ? (prevTW/prevWC).toFixed(1) : null;
+    const weightTrend = (avgW && prevAvgW) ? parseFloat(avgW)-parseFloat(prevAvgW) : null;
+    return {name:ex.name, doneSets, doneReps, avgW, prevAvgW, weightTrend, isAmrap};
+  });
+
+  const setsRatio = totalTSets > 0 ? Math.round((totalDone/totalTSets)*100) : 0;
+  const repsRatio = totalTReps > 0 ? Math.round((totalDoneReps/totalTReps)*100) : (totalDone > 0 ? 100 : 0);
+  const plaisir = entry.plaisir;
+  const fatigue = entry.fatigue;
+  const score = totalDone === 0 ? 0 :
+    Math.round((setsRatio*0.35 + repsRatio*0.35 + (plaisir?plaisir*10:50)*0.15 + (fatigue?fatigue*10:50)*0.15)/10*10)/10;
+
+  const msgs = [];
+  const meta = WEEK_META[week-1];
+  if (totalDone > 0) {
+    if (setsRatio >= 95) msgs.push({icon:"✅", text:"Volume parfaitement respecté — toutes les séries au rendez-vous !"});
+    else if (setsRatio >= 75) msgs.push({icon:"⚠️", text:`${setsRatio}% du volume complété — bien ! Vise 100% la prochaine fois.`});
+    else msgs.push({icon:"🔄", text:`Volume incomplet (${setsRatio}%). Chaque séance est un apprentissage.`});
+
+    if (repsRatio >= 90) msgs.push({icon:"💪", text:"Répétitions au complet — tu maîtrises les charges actuelles !"});
+    else if (repsRatio >= 70) msgs.push({icon:"📊", text:`${repsRatio}% des reps atteintes. Vise à combler cet écart progressivement.`});
+
+    const progressed = exStats.filter(e => e.weightTrend !== null && e.weightTrend > 0);
+    const regressed = exStats.filter(e => e.weightTrend !== null && e.weightTrend < 0);
+    if (progressed.length > 0) msgs.push({icon:"📈", text:`Progression de charge : ${progressed.map(e=>e.name.replace('⭐','')).join(", ")} !`});
+    if (regressed.length > 0) msgs.push({icon:"📉", text:`Charge réduite : ${regressed.map(e=>e.name.replace('⭐','')).join(", ")}. Fatigue ou technique ?`});
+
+    const amrapStats = exStats.filter(e => e.isAmrap && e.doneReps > 0);
+    if (amrapStats.length > 0) {
+      const total = amrapStats.reduce((a,e) => a+e.doneReps, 0);
+      msgs.push({icon:"🔢", text:`Total tractions poids corps : ${total} reps. Tracker ce chiffre chaque semaine !`});
+    }
+  }
+  if (plaisir !== undefined && plaisir !== null) {
+    if (plaisir >= 8) msgs.push({icon:"😍", text:"Tu prends beaucoup de plaisir — ce feeling est précieux, il prédit la constance !"});
+    else if (plaisir >= 6) msgs.push({icon:"😊", text:"Plaisir satisfaisant. La régularité fera le reste."});
+    else if (plaisir >= 4) msgs.push({icon:"😐", text:"Plaisir mitigé — check : musique, pre-workout, ou changer l'ordre des exercices."});
+    else msgs.push({icon:"😔", text:"Séance difficile. Si ça dure 2 séances, parle à ton coach pour ajuster."});
+  }
+  if (fatigue !== undefined && fatigue !== null) {
+    if (fatigue >= 8) msgs.push({icon:"⚡", text:"Pleine forme ! Profites-en pour pousser les charges en haut de la fourchette."});
+    else if (fatigue >= 6) msgs.push({icon:"🔋", text:"Bonne énergie — continue sur cette lancée !"});
+    else if (fatigue >= 4) msgs.push({icon:"🪫", text:"Légère fatigue. Check : sommeil, hydratation, repas pré-séance, stress."});
+    else msgs.push({icon:"😴", text:"Fatigue importante — réduis les charges -10%. Priorité à la récupération ce soir."});
+  }
+  if (plaisir && fatigue && plaisir <= 4 && fatigue <= 4) {
+    msgs.push({icon:"🚨", text:"ALERTE — Plaisir bas + Énergie basse = repos actif recommandé. Analyse la source."});
+  }
+  if (meta.isDeload) msgs.push({icon:"💡", text:"Semaine de décharge — volume réduit volontairement. Ton corps supercompense."});
+  if (week === 4 && sess === 'M') msgs.push({icon:"⭐", text:"S4 : Teste ton nouveau max lesté en fin de semaine ! Objectif : +32,5 kg ou plus."});
+  if (week === 6) msgs.push({icon:"🏁", text:"S6 FINAL — Teste ton max lesté tractions ET ton AMRAP poids corps cette semaine !"});
+
+  let badge = null;
+  if (totalDone > 0) {
+    if (score >= 8.5)      badge = {emoji:"🏆", label:"Performance Elite",     color:"#FFD700"};
+    else if (score >= 7)   badge = {emoji:"🥈", label:"Très Bonne Séance",     color:"#C0C0C0"};
+    else if (score >= 5.5) badge = {emoji:"🥉", label:"Bonne Séance",          color:"#CD7F32"};
+    else if (score >= 4)   badge = {emoji:"💪", label:"T'es venu(e) !",        color:"#4ECDC4"};
+    else                   badge = {emoji:"🫀", label:"Le venir compte !",      color:"#FF6B6B"};
+  }
+  return {msgs, setsRatio, repsRatio, score, exStats, totalDone, totalTSets, totalTReps, totalDoneReps, badge};
+}
+
+// ============================================================
+// UPDATE
+// ============================================================
+function updateMeta(field, val) {
+  const key = getKey(selectedWeek, selectedSession);
+  if (!appData[key]) appData[key] = {};
+  appData[key][field] = (field === 'plaisir' || field === 'fatigue') ? parseInt(val) : val;
+  saveData();
+  refreshRecap();
+  if (field === 'plaisir') document.getElementById('plaisir-val').innerHTML = val + '<span>/10</span>';
+  if (field === 'fatigue') document.getElementById('fatigue-val').innerHTML = val + '<span>/10</span>';
+}
+
+function updateSet(eIdx, sIdx, field, val) {
+  const key = getKey(selectedWeek, selectedSession);
+  if (!appData[key]) appData[key] = {};
+  if (!appData[key].sets) appData[key].sets = {};
+  if (!appData[key].sets[eIdx]) appData[key].sets[eIdx] = {};
+  if (!appData[key].sets[eIdx][sIdx]) appData[key].sets[eIdx][sIdx] = {};
+  appData[key].sets[eIdx][sIdx][field] = val;
+  saveData();
+  refreshRecap();
+}
+
+function updateRangeStyle(el, color) {
+  const pct = ((el.value - 1) / 9) * 100;
+  el.style.background = `linear-gradient(to right, ${color} ${pct}%, #1e3a5a ${pct}%)`;
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function selectWeek(w) {
+  selectedWeek = w;
+  renderWeekGrid();
+  renderInfoBar();
+  renderExercises();
+  refreshRessenti();
+  refreshRecap();
+  refreshChart();
+  closeExportPreview();
+}
+
+function selectSession(s) {
+  selectedSession = s;
+  ['L','M','J','V'].forEach(x => {
+    const t = document.getElementById('tab-' + x);
+    if (!t) return;
+    if (x === s) { t.style.background = SESSION_COLORS[s]; t.style.color = '#060a14'; t.style.borderColor = SESSION_COLORS[s]; }
+    else { t.style.background = '#080f1e'; t.style.color = '#4a7a9b'; t.style.borderColor = '#0f2040'; }
+  });
+  document.getElementById('session-note').textContent = SESSION_NOTES[s];
+  renderExercises();
+  refreshRessenti();
+  refreshRecap();
+  closeExportPreview();
+}
+
+function renderWeekGrid() {
+  const grid = document.getElementById('week-grid');
+  grid.innerHTML = '';
+  for (let w = 1; w <= 6; w++) {
+    const meta = WEEK_META[w-1];
+    const bloc = getBloc(w);
+    const bm = BLOC_META[bloc];
+    const active = w === selectedWeek;
+    const hasAny = ['L','M','J','V'].some(s => {
+      const e = appData[getKey(w, s)];
+      return e?.sets && Object.keys(e.sets).some(k => Object.keys(e.sets[k]).length > 0);
+    });
+    const btn = document.createElement('button');
+    btn.className = 'week-btn';
+    btn.textContent = 'S' + w;
+    btn.style.background = active ? bm.color + '20' : '#080f1e';
+    btn.style.color = active ? bm.color : '#4a7a9b';
+    btn.style.border = active ? `2px solid ${bm.color}` : '2px solid #0f2040';
+    btn.onclick = () => selectWeek(w);
+    if (meta.isDeload) { const dot = document.createElement('span'); dot.className = 'week-dot-top'; btn.appendChild(dot); }
+    if (hasAny) { const dot = document.createElement('span'); dot.className = 'week-dot-bot'; dot.style.background = bm.color; btn.appendChild(dot); }
+    grid.appendChild(btn);
+  }
+}
+
+function renderInfoBar() {
+  const meta = WEEK_META[selectedWeek-1];
+  const bloc = getBloc(selectedWeek);
+  const bm = BLOC_META[bloc];
+  const bar = document.getElementById('info-bar');
+  bar.style.borderColor = bm.color + '33';
+  bar.innerHTML = `
+    <div class="info-bloc" style="color:${bm.color}">${bm.emoji} ${meta.label}</div>
+    <div class="info-desc">${meta.note}</div>
+    ${meta.isDeload ? `<div class="deload-badge">⚡ DÉCHARGE — Volume réduit -40%</div>` : ''}
+  `;
+}
+
+function renderExercises() {
+  const exercises = EXERCISES[selectedSession];
+  const week = selectedWeek;
+  const entry = getEntry(week, selectedSession);
+  const recap = buildRecap(selectedSession, week);
+  const container = document.getElementById('exercises-container');
+  container.innerHTML = '';
+  const sc = SESSION_COLORS[selectedSession];
+
+  exercises.forEach((ex, eIdx) => {
+    const wd = ex.weeks[week-1];
+    const setData = entry.sets?.[eIdx] || {};
+    const exStat = recap.exStats[eIdx];
+    const isAmrap = wd.reps === 0;
+
+    // Trend badge
+    let trendHtml = '';
+    if (exStat?.weightTrend !== null && exStat?.weightTrend !== undefined) {
+      const t = exStat.weightTrend;
+      const col = t>0 ? '#4ECDC4' : t<0 ? '#FF6B6B' : '#4a7a9b';
+      const bg  = t>0 ? '#4ECDC422' : t<0 ? '#FF6B6B22' : '#4a7a9b22';
+      const txt = t>0 ? `▲ +${t.toFixed(1)} kg` : t<0 ? `▼ ${t.toFixed(1)} kg` : '= Stable';
+      trendHtml = `<span class="trend-badge" style="background:${bg};color:${col}">${txt}</span>`;
+    }
+
+    // RIR badge color
+    const rirColors = {0:'#E94560', 1:'#4ECDC4', 2:'#FF9F43', 3:'#7a9bbf'};
+    const rirBg = (rirColors[ex.rir] || '#4a7a9b') + '22';
+    const rirFg = rirColors[ex.rir] || '#4a7a9b';
+
+    // Sets rows
+    let setsHtml = '<tr>';
+    ['Série','Cible','Reps réelles','Charge (kg)','✓'].forEach(h => { setsHtml += `<th>${h}</th>`; });
+    setsHtml += '</tr>';
+
+    for (let sIdx = 0; sIdx < wd.sets; sIdx++) {
+      const sd = setData[sIdx] || {};
+      const doneReps = parseInt(sd.reps) || 0;
+      const repsOk = isAmrap ? (sd.reps && doneReps > 0) : (sd.reps && doneReps >= wd.reps);
+      const hasBoth = sd.reps && sd.weight;
+      setsHtml += `<tr>
+        <td class="set-num" style="color:${sc}">S${sIdx+1}</td>
+        <td class="set-target">${wd.repsDisplay}</td>
+        <td><input type="number" min="0" max="99" value="${sd.reps||''}" placeholder="—"
+          class="set-input"
+          style="background:${repsOk?'#4ECDC415':'#0a1525'};border:1px solid ${repsOk?'#4ECDC4':'#0f2040'}"
+          onchange="updateSet(${eIdx},${sIdx},'reps',this.value)"
+          oninput="updateSet(${eIdx},${sIdx},'reps',this.value)"/></td>
+        <td><input type="number" min="0" step="0.5" value="${sd.weight||''}" placeholder="—"
+          class="set-input"
+          style="background:${sd.weight?'#FF9F4315':'#0a1525'};border:1px solid ${sd.weight?'#FF9F43':'#0f2040'}"
+          onchange="updateSet(${eIdx},${sIdx},'weight',this.value)"
+          oninput="updateSet(${eIdx},${sIdx},'weight',this.value)"/></td>
+        <td class="set-ok">${hasBoth ? (repsOk ? '✅' : '⚠️') : '○'}</td>
+      </tr>`;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'ex-card';
+    card.innerHTML = `
+      <div class="ex-header">
+        <div class="ex-info">
+          <div class="ex-name-row">
+            <span class="ex-name">${ex.name}</span>
+            ${trendHtml}
+          </div>
+          <div class="ex-sub">${ex.sub} · <span style="color:#7a9bbf">${ex.muscle}</span></div>
+          <div class="ex-weight">💡 Charge conseillée : ${wd.load}${exStat?.avgW ? `<span class="ex-weight-avg"> · Moy. séance : ${exStat.avgW} kg</span>` : ''}</div>
+          <div style="display:flex;gap:6px;align-items:center;margin-top:4px;flex-wrap:wrap;">
+            <span class="ex-rir" style="background:${rirBg};color:${rirFg}">RIR ${ex.rir}</span>
+            <span class="ex-rest">⏱ Repos : ${ex.rest}</span>
+          </div>
+        </div>
+        <a href="${ex.yt}" target="_blank" class="yt-btn">▶ Vidéo</a>
+      </div>
+      <div class="sets-wrap">
+        <table class="sets-table"><tbody>${setsHtml}</tbody></table>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function refreshRessenti() {
+  const entry = getEntry(selectedWeek, selectedSession);
+  const p = entry.plaisir !== undefined ? entry.plaisir : 5;
+  const f = entry.fatigue !== undefined ? entry.fatigue : 5;
+  document.getElementById('plaisir-range').value = p;
+  document.getElementById('fatigue-range').value = f;
+  document.getElementById('plaisir-val').innerHTML = p + '<span>/10</span>';
+  document.getElementById('fatigue-val').innerHTML = f + '<span>/10</span>';
+  updateRangeStyle(document.getElementById('plaisir-range'), '#FFE66D');
+  updateRangeStyle(document.getElementById('fatigue-range'), '#4ECDC4');
+  document.getElementById('notes-area').value = entry.notes || '';
+}
+
+function refreshRecap() {
+  const recap = buildRecap(selectedSession, selectedWeek);
+  const circ = 2 * Math.PI * 24;
+  const fill = recap.score / 10;
+  const arc = document.getElementById('score-arc');
+  const txt = document.getElementById('score-text');
+  const col = recap.score >= 7 ? '#4ECDC4' : recap.score >= 5 ? '#FFE66D' : '#FF6B6B';
+  arc.setAttribute('stroke', recap.score > 0 ? col : '#4a7a9b');
+  arc.setAttribute('stroke-dashoffset', recap.score > 0 ? circ*(1-fill) : circ);
+  txt.textContent = recap.score > 0 ? recap.score : '—';
+  txt.setAttribute('fill', recap.score > 0 ? col : '#4a7a9b');
+
+  const hbb = document.getElementById('header-badge-box');
+  if (recap.badge) {
+    hbb.style.display = 'block';
+    hbb.style.background = recap.badge.color + '18';
+    hbb.style.border = `1px solid ${recap.badge.color}44`;
+    document.getElementById('header-badge-emoji').textContent = recap.badge.emoji;
+    document.getElementById('header-badge-label').textContent = recap.badge.label;
+    document.getElementById('header-badge-label').style.color = recap.badge.color;
+  } else { hbb.style.display = 'none'; }
+
+  const rb = document.getElementById('recap-badge');
+  if (recap.badge) {
+    rb.style.display = 'block';
+    rb.style.background = recap.badge.color + '18';
+    rb.style.border = `1px solid ${recap.badge.color}44`;
+    document.getElementById('recap-badge-emoji').textContent = recap.badge.emoji;
+    document.getElementById('recap-badge-label').textContent = recap.badge.label;
+    document.getElementById('recap-badge-label').style.color = recap.badge.color;
+  } else { rb.style.display = 'none'; }
+
+  const body = document.getElementById('recap-body');
+  if (recap.totalDone === 0) {
+    body.innerHTML = `<div class="recap-empty">✍️ Remplis les séries ci-dessus pour voir l'analyse en temps réel</div>`;
+    return;
+  }
+  const sColor = recap.setsRatio>=90?'#4ECDC4':recap.setsRatio>=70?'#FFE66D':'#FF6B6B';
+  const rColor = recap.repsRatio>=90?'#4ECDC4':recap.repsRatio>=70?'#FFE66D':'#FF6B6B';
+  body.innerHTML = `
+    <div class="recap-stats">
+      <div class="stat-box">
+        <div class="stat-box-label">Séries complétées</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${recap.setsRatio}%;background:${sColor}"></div></div>
+        <div class="stat-box-val">${recap.totalDone}/${recap.totalTSets} <span>(${recap.setsRatio}%)</span></div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-label">Reps atteintes</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${recap.repsRatio}%;background:${rColor}"></div></div>
+        <div class="stat-box-val">${recap.repsRatio}%</div>
+      </div>
+    </div>
+    <div class="msg-list">${recap.msgs.map(m=>`
+      <div class="msg-item">
+        <span class="msg-icon">${m.icon}</span>
+        <span class="msg-text">${m.text}</span>
+      </div>`).join('')}
+    </div>
+  `;
+  refreshChart();
+}
+
+function refreshChart() {
+  const bars = document.getElementById('chart-bars');
+  bars.innerHTML = '';
+  for (let w = 1; w <= 6; w++) {
+    const bloc = getBloc(w);
+    const bm = BLOC_META[bloc];
+    const scores = ['L','M','J','V'].map(s => { const r = buildRecap(s, w); return r.score; }).filter(s => s > 0);
+    const avg = scores.length > 0 ? scores.reduce((a,b) => a+b, 0) / scores.length : 0;
+    const h = avg > 0 ? Math.max(6, avg*4.5) : 5;
+    const col = avg > 0 ? (avg>=7?'#4ECDC4':avg>=5?'#FFE66D':'#FF6B6B') : '#1e3a5a';
+    const active = w === selectedWeek;
+    const div = document.createElement('div');
+    div.className = 'chart-bar-wrap';
+    div.innerHTML = `
+      <div class="chart-bar-inner">
+        <div class="chart-bar" style="height:${h}px;background:${col};border:${active?'2px solid #fff':'none'}"></div>
+      </div>
+      <div class="chart-bar-label" style="color:${active?bm.color:'#4a7a9b'};font-weight:${active?800:400}">S${w}</div>
+    `;
+    div.onclick = () => selectWeek(w);
+    bars.appendChild(div);
+  }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  loadData();
+  renderWeekGrid();
+  renderInfoBar();
+  selectSession('L');
+  refreshRessenti();
+  refreshRecap();
+  refreshChart();
+  setTimeout(showInstallBanner, 1500);
+}
+
+const fontLink = document.createElement('link');
+fontLink.rel = 'stylesheet';
+fontLink.href = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap';
+fontLink.onerror = () => {};
+document.head.appendChild(fontLink);
+
+init();
+</script>
+</body>
+</html>
