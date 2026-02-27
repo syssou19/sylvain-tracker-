@@ -257,463 +257,48 @@ function showInstallBanner(){
 }
 function dismissInstall(){document.getElementById('install-banner').classList.remove('show');localStorage.setItem('ft-install-dismissed','1');}
 
-// ══════════════════════════════════════════════════════════════
-// PROGRAMME PRISE DE MASSE — 6 SEMAINES
-//
-// RÉSUMÉ VOLUME HEBDOMADAIRE FINAL :
-// Quadriceps      : 14-20 séries  ✅
-// Ischio/Fessiers : 15-21 séries  ✅
-// Pectoraux       : 14-17 séries  ✅
-// Dos             : 13-15 séries + clusters  ✅
-// Deltoïde ant.   : couvert (Bench + Incliné + Militaire)
-// Deltoïde médian : 3-4 séries élévations latérales  ✅
-// Deltoïde post.  : Face Pull  ✅
-// Biceps          : 6-8 séries  ✅
-// Triceps         : 6-8 séries  ✅
-// Mollets         : 7-8 séries  ✅
-//
-// MARDI : Prone Row (banc plat dédié, zéro érecteurs) remplace Yates Row
-//         Super Low Row Panatta ajouté en position 3 (dos inférieur/externe)
-// VENDREDI : Élévations Latérales ajoutées après Militaire
-//            → deltoïde médian enfin couvert en isolation
-// ══════════════════════════════════════════════════════════════
-
 const EXERCISES = {
-
-  // ─────────────────────────────────────────────────────────────
-  // LUNDI — Lower Quad Dominant
-  // Squat → Leg Press Uni → Pendulum → Leg Extension → Mollets
-  // ─────────────────────────────────────────────────────────────
   L:[
-    {
-      id:"L1", name:"Squat Barre Haute",
-      sub:"82-87% 1RM · Descente 3s · Remontée explosive · Talons sous la barre",
-      muscle:"Quadriceps · Fessiers · Érecteurs", rir:2, rest:"4 min",
-      yt:"https://www.youtube.com/results?search_query=squat+barre+haute+technique+francais",
-      weeks:[
-        {sets:4,reps:5,rd:"5",load:"~120-123 kg"},
-        {sets:4,reps:5,rd:"5",load:"~122,5 kg"},
-        {sets:5,reps:5,rd:"5",load:"~125 kg"},
-        {sets:5,reps:5,rd:"5",load:"~127,5 kg"},
-        {sets:5,reps:5,rd:"5",load:"~130 kg"},
-        {sets:3,reps:5,rd:"5",load:"~100 kg (deload)"},
-      ]
-    },
-    {
-      id:"L2", name:"Leg Press Unilatéral",
-      sub:"Un pied centré · Amplitude complète · Évite les compensations bilatérales",
-      muscle:"Quadriceps · Fessiers (unilatéral)", rir:2, rest:"2 min/jambe",
-      yt:"https://www.youtube.com/results?search_query=leg+press+unilateral+technique",
-      weeks:[
-        {sets:4,reps:10,rd:"10/jambe",load:"Autorégulation"},
-        {sets:4,reps:10,rd:"10/jambe",load:"Autorégulation"},
-        {sets:4,reps:10,rd:"10/jambe",load:"Autorégulation"},
-        {sets:5,reps:10,rd:"10/jambe",load:"Autorégulation"},
-        {sets:5,reps:10,rd:"10/jambe",load:"Autorégulation"},
-        {sets:3,reps:10,rd:"10/jambe",load:"Autorégulation"},
-      ]
-    },
-    {
-      id:"L3", name:"Pendulum Squat ⭐",
-      sub:"Pause 1s en étirement max · Tension continue · Courbe de résistance optimale",
-      muscle:"Quadriceps (isolation supérieure)", rir:2, rest:"2 min",
-      yt:"https://www.youtube.com/results?search_query=pendulum+squat+technique+quad",
-      weeks:[
-        {sets:4,reps:10,rd:"10-12",load:"Autorégulation"},
-        {sets:4,reps:12,rd:"12",   load:"Autorégulation"},
-        {sets:4,reps:12,rd:"12",   load:"Autorégulation"},
-        {sets:4,reps:12,rd:"12",   load:"Autorégulation"},
-        {sets:5,reps:12,rd:"12",   load:"Autorégulation"},
-        {sets:3,reps:10,rd:"10",   load:"Autorégulation"},
-      ]
-    },
-    {
-      id:"L4", name:"Leg Extension",
-      sub:"Rotation interne légère · Squeeze 2s en haut → vaste interne",
-      muscle:"Quadriceps · Vaste interne", rir:1, rest:"75 sec",
-      yt:"https://www.youtube.com/results?search_query=leg+extension+vaste+interne+technique",
-      weeks:[
-        {sets:3,reps:14,rd:"14-16",load:"Autorégulation"},
-        {sets:3,reps:15,rd:"15-16",load:"Autorégulation"},
-        {sets:3,reps:16,rd:"16",   load:"Autorégulation"},
-        {sets:3,reps:16,rd:"16",   load:"Autorégulation"},
-        {sets:4,reps:16,rd:"16",   load:"Autorégulation"},
-        {sets:2,reps:14,rd:"14",   load:"Autorégulation"},
-      ]
-    },
-    {
-      id:"L5", name:"Standing Calf Raise Machine",
-      sub:"Amplitude max · Pause 2s en étirement complet",
-      muscle:"Gastrocnémien", rir:1, rest:"60 sec",
-      yt:"https://www.youtube.com/results?search_query=standing+calf+raise+technique",
-      weeks:[
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:3,reps:15,rd:"15",load:"Autorégulation"},
-      ]
-    },
+    {id:"L1",name:"Squat Barre Haute",sub:"82-87% 1RM · Descente 3s · Remontée explosive · Talons sous la barre",muscle:"Quadriceps · Fessiers · Érecteurs",rir:2,rest:"4 min",yt:"https://www.youtube.com/results?search_query=squat+barre+haute+technique+francais",weeks:[{sets:4,reps:5,rd:"5",load:"~120-123 kg"},{sets:4,reps:5,rd:"5",load:"~122,5 kg"},{sets:5,reps:5,rd:"5",load:"~125 kg"},{sets:5,reps:5,rd:"5",load:"~127,5 kg"},{sets:5,reps:5,rd:"5",load:"~130 kg"},{sets:3,reps:5,rd:"5",load:"~100 kg (deload)"}]},
+    {id:"L2",name:"Leg Press Unilatéral",sub:"Un pied centré · Amplitude complète · Évite les compensations bilatérales",muscle:"Quadriceps · Fessiers (unilatéral)",rir:2,rest:"2 min/jambe",yt:"https://www.youtube.com/results?search_query=leg+press+unilateral+technique",weeks:[{sets:4,reps:10,rd:"10/jambe",load:"Autorégulation"},{sets:4,reps:10,rd:"10/jambe",load:"Autorégulation"},{sets:4,reps:10,rd:"10/jambe",load:"Autorégulation"},{sets:5,reps:10,rd:"10/jambe",load:"Autorégulation"},{sets:5,reps:10,rd:"10/jambe",load:"Autorégulation"},{sets:3,reps:10,rd:"10/jambe",load:"Autorégulation"}]},
+    {id:"L3",name:"Pendulum Squat ⭐",sub:"Pause 1s en étirement max · Tension continue · Courbe de résistance optimale",muscle:"Quadriceps (isolation supérieure)",rir:2,rest:"2 min",yt:"https://www.youtube.com/results?search_query=pendulum+squat+technique+quad",weeks:[{sets:4,reps:10,rd:"10-12",load:"Autorégulation"},{sets:4,reps:12,rd:"12",load:"Autorégulation"},{sets:4,reps:12,rd:"12",load:"Autorégulation"},{sets:4,reps:12,rd:"12",load:"Autorégulation"},{sets:5,reps:12,rd:"12",load:"Autorégulation"},{sets:3,reps:10,rd:"10",load:"Autorégulation"}]},
+    {id:"L4",name:"Leg Extension",sub:"Rotation interne légère · Squeeze 2s en haut → vaste interne",muscle:"Quadriceps · Vaste interne",rir:1,rest:"75 sec",yt:"https://www.youtube.com/results?search_query=leg+extension+vaste+interne+technique",weeks:[{sets:3,reps:14,rd:"14-16",load:"Autorégulation"},{sets:3,reps:15,rd:"15-16",load:"Autorégulation"},{sets:3,reps:16,rd:"16",load:"Autorégulation"},{sets:3,reps:16,rd:"16",load:"Autorégulation"},{sets:4,reps:16,rd:"16",load:"Autorégulation"},{sets:2,reps:14,rd:"14",load:"Autorégulation"}]},
+    {id:"L5",name:"Standing Calf Raise Machine",sub:"Amplitude max · Pause 2s en étirement complet",muscle:"Gastrocnémien",rir:1,rest:"60 sec",yt:"https://www.youtube.com/results?search_query=standing+calf+raise+technique",weeks:[{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:3,reps:15,rd:"15",load:"Autorégulation"}]},
   ],
-
-  // ─────────────────────────────────────────────────────────────
-  // MARDI — Upper Pull
-  // Ordre : Tractions lestées → Prone Row → Super Low Row → Clusters
-  //         → Face Pull → Curl EZ → Curl Marteau
-  //
-  // CHANGEMENTS vs version précédente :
-  // • Yates Row REMPLACÉ par Prone Row (banc plat dédié)
-  //   → érecteurs hors équation, dos isolé à 100%, meilleure
-  //   tolérance fatigue lombaire avec le RDL du jeudi
-  // • Super Low Row Panatta AJOUTÉ en position 3
-  //   → cible portion inférieure/externe grand dorsal
-  //   → angle très bas = étirement maximal = forme en V
-  //   → compound libre puis machine guidée : ordre logique
-  // ─────────────────────────────────────────────────────────────
   M:[
-    {
-      id:"M1", name:"Tractions Lestées ⭐",
-      sub:"Pronation · 1RM départ +40 kg · SNC frais — TOUJOURS en premier",
-      muscle:"Grand dorsal · Biceps · Rhomboïdes", rir:2, rest:"4 min",
-      yt:"https://www.youtube.com/results?search_query=tractions+lestees+technique+pronation",
-      weeks:[
-        {sets:5,reps:5,rd:"5",  load:"+25 kg"},
-        {sets:5,reps:5,rd:"5",  load:"+27,5 kg"},
-        {sets:5,reps:4,rd:"4",  load:"+30 kg"},
-        {sets:4,reps:4,rd:"4",  load:"+32,5 kg — ⭐ TEST INTERMÉDIAIRE fin S4"},
-        {sets:4,reps:3,rd:"3-4",load:"+35 kg"},
-        {sets:3,reps:5,rd:"5",  load:"+20 kg (deload) → TEST FINAL 1RM"},
-      ]
-    },
-    {
-      id:"M2", name:"Prone Row Barre ⭐",
-      sub:"Banc plat dédié · Ventre à plat · Érecteurs hors équation · Tirage pur dos",
-      muscle:"Dos moyen · Grand dorsal · Rhomboïdes · Biceps", rir:2, rest:"3 min",
-      yt:"https://www.youtube.com/results?search_query=prone+row+chest+supported+barbell+technique",
-      weeks:[
-        {sets:4,reps:8, rd:"8",  load:"Lourd — autorégulation"},
-        {sets:4,reps:8, rd:"8",  load:"Lourd — autorégulation"},
-        {sets:4,reps:8, rd:"8",  load:"Lourd — autorégulation"},
-        {sets:5,reps:8, rd:"8",  load:"Lourd — autorégulation"},
-        {sets:5,reps:8, rd:"8",  load:"Lourd — autorégulation"},
-        {sets:3,reps:8, rd:"8",  load:"Modéré — autorégulation"},
-      ]
-    },
-    {
-      id:"M3", name:"Super Low Row Panatta",
-      sub:"Angle très bas · Étirement max grand dorsal · Portion inférieure/externe · Forme en V",
-      muscle:"Grand dorsal inférieur/externe · Dos moyen", rir:2, rest:"2 min",
-      yt:"https://www.youtube.com/results?search_query=low+row+cable+machine+lat+lower+technique",
-      weeks:[
-        {sets:3,reps:12,rd:"12",load:"Autorégulation"},
-        {sets:3,reps:12,rd:"12",load:"Autorégulation"},
-        {sets:3,reps:12,rd:"12",load:"Autorégulation"},
-        {sets:4,reps:12,rd:"12",load:"Autorégulation"},
-        {sets:4,reps:12,rd:"12",load:"Autorégulation"},
-        {sets:2,reps:12,rd:"12",load:"Autorégulation"},
-      ]
-    },
-    {
-      id:"M4", name:"Tractions Clusters ⭐",
-      sub:"5r / 15s / 5r / 15s / 4r = 1 cluster · Noter total reps par cluster",
-      muscle:"Grand dorsal · Biceps · Rhomboïdes (volume)", rir:1, rest:"2 min entre clusters",
-      yt:"https://www.youtube.com/results?search_query=cluster+sets+pull+ups+volume+technique",
-      weeks:[
-        {sets:4,reps:14,rd:"~14r/cluster",load:"Poids du corps"},
-        {sets:4,reps:14,rd:"~14r/cluster",load:"Poids du corps"},
-        {sets:4,reps:14,rd:"~14r/cluster",load:"Poids du corps"},
-        {sets:5,reps:14,rd:"~14r/cluster",load:"Poids du corps"},
-        {sets:5,reps:14,rd:"~14r/cluster",load:"Poids du corps"},
-        {sets:3,reps:14,rd:"~14r/cluster",load:"Poids du corps"},
-      ]
-    },
-    {
-      id:"M5", name:"Face Pull Poulie Haute",
-      sub:"Coudes hauts · Rotation externe finale · Santé épaules long terme",
-      muscle:"Deltoïdes postérieurs · Coiffe des rotateurs", rir:1, rest:"60 sec",
-      yt:"https://www.youtube.com/results?search_query=face+pull+rotation+externe+technique",
-      weeks:[
-        {sets:3,reps:15,rd:"15",load:"Léger"},
-        {sets:3,reps:15,rd:"15",load:"Léger"},
-        {sets:3,reps:15,rd:"15",load:"Léger"},
-        {sets:3,reps:15,rd:"15",load:"Léger"},
-        {sets:3,reps:15,rd:"15",load:"Léger"},
-        {sets:2,reps:15,rd:"15",load:"Léger"},
-      ]
-    },
-    {
-      id:"M6", name:"Curl Barre EZ",
-      sub:"Tempo 3-0-1-0 · Strict · Superset avec Marteau possible S4-S5",
-      muscle:"Biceps brachial", rir:2, rest:"90 sec",
-      yt:"https://www.youtube.com/results?search_query=curl+barre+ez+biceps+technique",
-      weeks:[
-        {sets:3,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:3,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:3,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:3,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:2,reps:10,rd:"10",load:"Autorégulation"},
-      ]
-    },
-    {
-      id:"M7", name:"Curl Marteau",
-      sub:"Coudes fixes · Prise neutre · Brachial + Brachio-radial",
-      muscle:"Biceps · Brachial · Brachio-radial", rir:2, rest:"90 sec",
-      yt:"https://www.youtube.com/results?search_query=curl+marteau+hammer+curl+technique",
-      weeks:[
-        {sets:3,reps:12,rd:"12",load:"Autorégulation"},
-        {sets:3,reps:12,rd:"12",load:"Autorégulation"},
-        {sets:3,reps:12,rd:"12",load:"Autorégulation"},
-        {sets:3,reps:12,rd:"12",load:"Autorégulation"},
-        {sets:4,reps:12,rd:"12",load:"Autorégulation"},
-        {sets:2,reps:12,rd:"12",load:"Autorégulation"},
-      ]
-    },
+    {id:"M1",name:"Tractions Lestées ⭐",sub:"Pronation · 1RM départ +40 kg · SNC frais — TOUJOURS en premier",muscle:"Grand dorsal · Biceps · Rhomboïdes",rir:2,rest:"4 min",yt:"https://www.youtube.com/results?search_query=tractions+lestees+technique+pronation",weeks:[{sets:5,reps:5,rd:"5",load:"+25 kg"},{sets:5,reps:5,rd:"5",load:"+27,5 kg"},{sets:5,reps:4,rd:"4",load:"+30 kg"},{sets:4,reps:4,rd:"4",load:"+32,5 kg — ⭐ TEST INTERMÉDIAIRE fin S4"},{sets:4,reps:3,rd:"3-4",load:"+35 kg"},{sets:3,reps:5,rd:"5",load:"+20 kg (deload) → TEST FINAL 1RM"}]},
+    {id:"M2",name:"Prone Row Barre ⭐",sub:"Banc plat dédié · Ventre à plat · Érecteurs hors équation · Tirage pur dos",muscle:"Dos moyen · Grand dorsal · Rhomboïdes · Biceps",rir:2,rest:"3 min",yt:"https://www.youtube.com/results?search_query=prone+row+chest+supported+barbell+technique",weeks:[{sets:4,reps:8,rd:"8",load:"Lourd — autorégulation"},{sets:4,reps:8,rd:"8",load:"Lourd — autorégulation"},{sets:4,reps:8,rd:"8",load:"Lourd — autorégulation"},{sets:5,reps:8,rd:"8",load:"Lourd — autorégulation"},{sets:5,reps:8,rd:"8",load:"Lourd — autorégulation"},{sets:3,reps:8,rd:"8",load:"Modéré — autorégulation"}]},
+    {id:"M3",name:"Super Low Row Panatta",sub:"Angle très bas · Étirement max grand dorsal · Portion inférieure/externe · Forme en V",muscle:"Grand dorsal inférieur/externe · Dos moyen",rir:2,rest:"2 min",yt:"https://www.youtube.com/results?search_query=low+row+cable+machine+lat+lower+technique",weeks:[{sets:3,reps:12,rd:"12",load:"Autorégulation"},{sets:3,reps:12,rd:"12",load:"Autorégulation"},{sets:3,reps:12,rd:"12",load:"Autorégulation"},{sets:4,reps:12,rd:"12",load:"Autorégulation"},{sets:4,reps:12,rd:"12",load:"Autorégulation"},{sets:2,reps:12,rd:"12",load:"Autorégulation"}]},
+    {id:"M4",name:"Tractions Clusters ⭐",sub:"5r / 15s / 5r / 15s / 4r = 1 cluster · Noter total reps par cluster",muscle:"Grand dorsal · Biceps · Rhomboïdes (volume)",rir:1,rest:"2 min entre clusters",yt:"https://www.youtube.com/results?search_query=cluster+sets+pull+ups+volume+technique",weeks:[{sets:4,reps:14,rd:"~14r/cluster",load:"Poids du corps"},{sets:4,reps:14,rd:"~14r/cluster",load:"Poids du corps"},{sets:4,reps:14,rd:"~14r/cluster",load:"Poids du corps"},{sets:5,reps:14,rd:"~14r/cluster",load:"Poids du corps"},{sets:5,reps:14,rd:"~14r/cluster",load:"Poids du corps"},{sets:3,reps:14,rd:"~14r/cluster",load:"Poids du corps"}]},
+    {id:"M5",name:"Face Pull Poulie Haute",sub:"Coudes hauts · Rotation externe finale · Santé épaules long terme",muscle:"Deltoïdes postérieurs · Coiffe des rotateurs",rir:1,rest:"60 sec",yt:"https://www.youtube.com/results?search_query=face+pull+rotation+externe+technique",weeks:[{sets:3,reps:15,rd:"15",load:"Léger"},{sets:3,reps:15,rd:"15",load:"Léger"},{sets:3,reps:15,rd:"15",load:"Léger"},{sets:3,reps:15,rd:"15",load:"Léger"},{sets:3,reps:15,rd:"15",load:"Léger"},{sets:2,reps:15,rd:"15",load:"Léger"}]},
+    {id:"M6",name:"Curl Barre EZ",sub:"Tempo 3-0-1-0 · Strict · Superset avec Marteau possible S4-S5",muscle:"Biceps brachial",rir:2,rest:"90 sec",yt:"https://www.youtube.com/results?search_query=curl+barre+ez+biceps+technique",weeks:[{sets:3,reps:10,rd:"10",load:"Autorégulation"},{sets:3,reps:10,rd:"10",load:"Autorégulation"},{sets:3,reps:10,rd:"10",load:"Autorégulation"},{sets:3,reps:10,rd:"10",load:"Autorégulation"},{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:2,reps:10,rd:"10",load:"Autorégulation"}]},
+    {id:"M7",name:"Curl Marteau",sub:"Coudes fixes · Prise neutre · Brachial + Brachio-radial",muscle:"Biceps · Brachial · Brachio-radial",rir:2,rest:"90 sec",yt:"https://www.youtube.com/results?search_query=curl+marteau+hammer+curl+technique",weeks:[{sets:3,reps:12,rd:"12",load:"Autorégulation"},{sets:3,reps:12,rd:"12",load:"Autorégulation"},{sets:3,reps:12,rd:"12",load:"Autorégulation"},{sets:3,reps:12,rd:"12",load:"Autorégulation"},{sets:4,reps:12,rd:"12",load:"Autorégulation"},{sets:2,reps:12,rd:"12",load:"Autorégulation"}]},
   ],
-
-  // ─────────────────────────────────────────────────────────────
-  // JEUDI — Lower Postérieur / Fessiers
-  // RDL → Hip Thrust → Bulgarian → Leg Curl → Adducteurs → Mollets
-  // ─────────────────────────────────────────────────────────────
   J:[
-    {
-      id:"J1", name:"Romanian Deadlift (RDL)",
-      sub:"Descente à tension max ischio · Genoux fixes · Dos neutre strict",
-      muscle:"Ischio-jambiers · Fessiers · Érecteurs", rir:2, rest:"3,5 min",
-      yt:"https://www.youtube.com/results?search_query=romanian+deadlift+technique+ischio+francais",
-      weeks:[
-        {sets:4,reps:6,rd:"6",load:"~120 kg"},
-        {sets:4,reps:6,rd:"6",load:"~125 kg"},
-        {sets:4,reps:6,rd:"6",load:"~130 kg"},
-        {sets:5,reps:6,rd:"6",load:"~135 kg"},
-        {sets:5,reps:6,rd:"6",load:"~140 kg"},
-        {sets:3,reps:6,rd:"6",load:"~100 kg (deload)"},
-      ]
-    },
-    {
-      id:"J2", name:"Hip Thrust Barre",
-      sub:"Antéversion légère en haut · Fessiers, pas lombaires · Bilatéral avant unilatéral",
-      muscle:"Grand fessier · Fessiers", rir:2, rest:"2,5 min",
-      yt:"https://www.youtube.com/results?search_query=hip+thrust+barre+technique+fessiers",
-      weeks:[
-        {sets:4,reps:10,rd:"10-12",load:"~100 kg"},
-        {sets:4,reps:12,rd:"12",   load:"~107,5 kg"},
-        {sets:4,reps:12,rd:"12",   load:"~115 kg"},
-        {sets:5,reps:12,rd:"12",   load:"~120 kg"},
-        {sets:5,reps:12,rd:"12",   load:"~125 kg"},
-        {sets:3,reps:10,rd:"10",   load:"~90 kg (deload)"},
-      ]
-    },
-    {
-      id:"J3", name:"Bulgarian Split Squat",
-      sub:"Pied avant avancé → fessiers · Alterner les jambes · Haltères",
-      muscle:"Fessiers · Quadriceps · Adducteurs", rir:1, rest:"2 min (alt.)",
-      yt:"https://www.youtube.com/results?search_query=bulgarian+split+squat+fessiers+technique",
-      weeks:[
-        {sets:3,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},
-        {sets:3,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},
-        {sets:3,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},
-        {sets:4,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},
-        {sets:4,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},
-        {sets:2,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},
-      ]
-    },
-    {
-      id:"J4", name:"Leg Curl Couché",
-      sub:"Pieds en dorsiflexion (orteils vers toi) · Pause 2s en flexion max",
-      muscle:"Ischio-jambiers (biceps fémoral isolé)", rir:2, rest:"2 min",
-      yt:"https://www.youtube.com/results?search_query=lying+leg+curl+dorsiflexion+technique",
-      weeks:[
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:5,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:5,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:3,reps:10,rd:"10",load:"Autorégulation"},
-      ]
-    },
-    {
-      id:"J5", name:"Adducteurs Machine",
-      sub:"Pause 2s en fermeture · Cuisse interne souvent négligée",
-      muscle:"Adducteurs · Cuisse interne", rir:1, rest:"75 sec",
-      yt:"https://www.youtube.com/results?search_query=adducteurs+machine+technique",
-      weeks:[
-        {sets:3,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:3,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:3,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:3,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:2,reps:15,rd:"15",load:"Autorégulation"},
-      ]
-    },
-    {
-      id:"J6", name:"Seated Calf Raise",
-      sub:"Tempo 3-0-3-0 · Cible soléaire (complète le gastrocnémien du lundi)",
-      muscle:"Soléaire", rir:1, rest:"75 sec",
-      yt:"https://www.youtube.com/results?search_query=seated+calf+raise+soleus+technique",
-      weeks:[
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:4,reps:15,rd:"15",load:"Autorégulation"},
-        {sets:3,reps:15,rd:"15",load:"Autorégulation"},
-      ]
-    },
+    {id:"J1",name:"Romanian Deadlift (RDL)",sub:"Descente à tension max ischio · Genoux fixes · Dos neutre strict",muscle:"Ischio-jambiers · Fessiers · Érecteurs",rir:2,rest:"3,5 min",yt:"https://www.youtube.com/results?search_query=romanian+deadlift+technique+ischio+francais",weeks:[{sets:4,reps:6,rd:"6",load:"~120 kg"},{sets:4,reps:6,rd:"6",load:"~125 kg"},{sets:4,reps:6,rd:"6",load:"~130 kg"},{sets:5,reps:6,rd:"6",load:"~135 kg"},{sets:5,reps:6,rd:"6",load:"~140 kg"},{sets:3,reps:6,rd:"6",load:"~100 kg (deload)"}]},
+    {id:"J2",name:"Hip Thrust Barre",sub:"Antéversion légère en haut · Fessiers, pas lombaires · Bilatéral avant unilatéral",muscle:"Grand fessier · Fessiers",rir:2,rest:"2,5 min",yt:"https://www.youtube.com/results?search_query=hip+thrust+barre+technique+fessiers",weeks:[{sets:4,reps:10,rd:"10-12",load:"~100 kg"},{sets:4,reps:12,rd:"12",load:"~107,5 kg"},{sets:4,reps:12,rd:"12",load:"~115 kg"},{sets:5,reps:12,rd:"12",load:"~120 kg"},{sets:5,reps:12,rd:"12",load:"~125 kg"},{sets:3,reps:10,rd:"10",load:"~90 kg (deload)"}]},
+    {id:"J3",name:"Bulgarian Split Squat",sub:"Pied avant avancé → fessiers · Alterner les jambes · Haltères",muscle:"Fessiers · Quadriceps · Adducteurs",rir:1,rest:"2 min (alt.)",yt:"https://www.youtube.com/results?search_query=bulgarian+split+squat+fessiers+technique",weeks:[{sets:3,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},{sets:3,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},{sets:3,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},{sets:4,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},{sets:4,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"},{sets:2,reps:10,rd:"10/jambe",load:"Haltères — autorégulation"}]},
+    {id:"J4",name:"Leg Curl Couché",sub:"Pieds en dorsiflexion (orteils vers toi) · Pause 2s en flexion max",muscle:"Ischio-jambiers (biceps fémoral isolé)",rir:2,rest:"2 min",yt:"https://www.youtube.com/results?search_query=lying+leg+curl+dorsiflexion+technique",weeks:[{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:5,reps:10,rd:"10",load:"Autorégulation"},{sets:5,reps:10,rd:"10",load:"Autorégulation"},{sets:3,reps:10,rd:"10",load:"Autorégulation"}]},
+    {id:"J5",name:"Adducteurs Machine",sub:"Pause 2s en fermeture · Cuisse interne souvent négligée",muscle:"Adducteurs · Cuisse interne",rir:1,rest:"75 sec",yt:"https://www.youtube.com/results?search_query=adducteurs+machine+technique",weeks:[{sets:3,reps:15,rd:"15",load:"Autorégulation"},{sets:3,reps:15,rd:"15",load:"Autorégulation"},{sets:3,reps:15,rd:"15",load:"Autorégulation"},{sets:3,reps:15,rd:"15",load:"Autorégulation"},{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:2,reps:15,rd:"15",load:"Autorégulation"}]},
+    {id:"J6",name:"Seated Calf Raise",sub:"Tempo 3-0-3-0 · Cible soléaire (complète le gastrocnémien du lundi)",muscle:"Soléaire",rir:1,rest:"75 sec",yt:"https://www.youtube.com/results?search_query=seated+calf+raise+soleus+technique",weeks:[{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:4,reps:15,rd:"15",load:"Autorégulation"},{sets:3,reps:15,rd:"15",load:"Autorégulation"}]},
   ],
-
-  // ─────────────────────────────────────────────────────────────
-  // VENDREDI — Upper Push + AMRAP Tractions
-  // Bench → Incliné → Dips → Militaire → Élévations Latérales (NOUVEAU)
-  // → Écarté Poulie → Pushdown → AMRAP
-  //
-  // CHANGEMENT vs version précédente :
-  // Élévations Latérales ajoutées après le Militaire
-  // → deltoïde médian enfin couvert en isolation pure
-  // → seul angle sous-traité dans le programme (ant. + post. déjà couverts)
-  // → placé après Militaire : deltoïde médian pré-activé = stimulus maximal
-  // → 3 séries légères seulement, 60 sec repos → ~8 min supplémentaires
-  // Séance ~90 min en S5 — limite haute mais justifiée
-  // ─────────────────────────────────────────────────────────────
   V:[
-    {
-      id:"V1", name:"Développé Couché Barre",
-      sub:"Touche poitrine · Pause 1s en bas · Poussée explosive",
-      muscle:"Pectoraux · Deltoïdes antérieurs · Triceps", rir:2, rest:"4 min",
-      yt:"https://www.youtube.com/results?search_query=developpe+couche+barre+bench+press+technique",
-      weeks:[
-        {sets:4,reps:5,rd:"5",load:"~93 kg (85%)"},
-        {sets:4,reps:5,rd:"5",load:"~95 kg"},
-        {sets:4,reps:5,rd:"5",load:"~97,5 kg"},
-        {sets:5,reps:5,rd:"5",load:"~100 kg"},
-        {sets:5,reps:5,rd:"5",load:"~102,5 kg"},
-        {sets:3,reps:5,rd:"5",load:"~82,5 kg (deload)"},
-      ]
-    },
-    {
-      id:"V2", name:"Développé Incliné Haltères",
-      sub:"Angle 30-35° · Pause 1s en bas · Portion claviculaire · Frais = pleinement efficace",
-      muscle:"Pectoraux supérieurs · Deltoïdes antérieurs", rir:2, rest:"2,5 min",
-      yt:"https://www.youtube.com/results?search_query=developpe+incline+halteres+pectoraux+technique",
-      weeks:[
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:5,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:5,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:3,reps:10,rd:"10",load:"Autorégulation"},
-      ]
-    },
-    {
-      id:"V3", name:"Dips Lestés",
-      sub:"Corps légèrement incliné en avant → pectoraux dominants",
-      muscle:"Pectoraux inférieurs · Triceps", rir:2, rest:"2 min",
-      yt:"https://www.youtube.com/results?search_query=dips+lestes+pectoraux+technique",
-      weeks:[
-        {sets:3,reps:8, rd:"8-10",load:"+7,5 kg"},
-        {sets:3,reps:9, rd:"9-10",load:"+7,5 kg"},
-        {sets:3,reps:10,rd:"10",  load:"+10 kg"},
-        {sets:4,reps:10,rd:"10",  load:"+10 kg"},
-        {sets:4,reps:10,rd:"10",  load:"+12,5 kg"},
-        {sets:2,reps:8, rd:"8",   load:"+5 kg (deload)"},
-      ]
-    },
-    {
-      id:"V4", name:"Développé Militaire Haltères",
-      sub:"Assis strict · Aucun coup de reins · Amplitude complète",
-      muscle:"Deltoïdes · Trapèzes supérieurs · Triceps", rir:2, rest:"2 min",
-      yt:"https://www.youtube.com/results?search_query=developpe+militaire+halteres+assis+technique",
-      weeks:[
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:4,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:5,reps:10,rd:"10",load:"Autorégulation"},
-        {sets:3,reps:10,rd:"10",load:"Autorégulation"},
-      ]
-    },
-    {
-      id:"V5", name:"Élévations Latérales ⭐",
-      sub:"Poulie basse ou machine · Légèrement incliné · Coude semi-fléchi · Pause 1s en haut",
-      muscle:"Deltoïde médian (isolation pure · largeur épaule)", rir:1, rest:"60 sec",
-      yt:"https://www.youtube.com/results?search_query=elevation+laterale+poulie+machine+technique+deltoides",
-      weeks:[
-        {sets:3,reps:15,rd:"15",load:"Léger — focus sensation"},
-        {sets:3,reps:15,rd:"15",load:"Léger — focus sensation"},
-        {sets:3,reps:15,rd:"15",load:"Modéré"},
-        {sets:3,reps:15,rd:"15",load:"Modéré"},
-        {sets:4,reps:15,rd:"15",load:"Modéré"},
-        {sets:2,reps:15,rd:"15",load:"Léger (deload)"},
-      ]
-    },
-    {
-      id:"V6", name:"Écarté Poulie Basse (cable fly)",
-      sub:"Amplitude max · Croisement léger · Pause 1s en contraction",
-      muscle:"Pectoraux (faisceau sternal/inférieur)", rir:1, rest:"90 sec",
-      yt:"https://www.youtube.com/results?search_query=cable+fly+ecarte+poulie+basse+pectoraux",
-      weeks:[
-        {sets:3,reps:14,rd:"14",load:"Léger-modéré"},
-        {sets:3,reps:14,rd:"14",load:"Léger-modéré"},
-        {sets:3,reps:14,rd:"14",load:"Léger-modéré"},
-        {sets:3,reps:14,rd:"14",load:"Léger-modéré"},
-        {sets:4,reps:14,rd:"14",load:"Léger-modéré"},
-        {sets:2,reps:14,rd:"14",load:"Léger-modéré"},
-      ]
-    },
-    {
-      id:"V7", name:"Rope Pushdown Poulie Haute",
-      sub:"Ouverture complète de la corde en bas · Coudes fixes au corps",
-      muscle:"Triceps (3 chefs)", rir:1, rest:"75 sec",
-      yt:"https://www.youtube.com/results?search_query=triceps+rope+pushdown+technique",
-      weeks:[
-        {sets:3,reps:14,rd:"14",load:"Autorégulation"},
-        {sets:3,reps:14,rd:"14",load:"Autorégulation"},
-        {sets:3,reps:14,rd:"14",load:"Autorégulation"},
-        {sets:3,reps:14,rd:"14",load:"Autorégulation"},
-        {sets:4,reps:14,rd:"14",load:"Autorégulation"},
-        {sets:2,reps:14,rd:"14",load:"Autorégulation"},
-      ]
-    },
-    {
-      id:"V8", name:"Tractions AMRAP ⭐",
-      sub:"MAX reps propres · Tracker total 3 séries chaque semaine · Objectif S1 : 25-30 reps",
-      muscle:"Grand dorsal · Biceps · Rhomboïdes (finisher)", rir:0, rest:"2 min",
-      yt:"https://www.youtube.com/results?search_query=tractions+amrap+max+reps+technique",
-      weeks:[
-        {sets:3,reps:0,rd:"MAX",load:"Poids du corps — note ton total S1 !"},
-        {sets:3,reps:0,rd:"MAX",load:"Poids du corps — bats S1"},
-        {sets:3,reps:0,rd:"MAX",load:"Poids du corps — bats S2"},
-        {sets:3,reps:0,rd:"MAX",load:"Poids du corps — bats S3"},
-        {sets:3,reps:0,rd:"MAX",load:"Poids du corps — semaine record"},
-        {sets:3,reps:0,rd:"MAX",load:"Poids du corps — 🏁 TEST FINAL AMRAP"},
-      ]
-    },
+    {id:"V1",name:"Développé Couché Barre",sub:"Touche poitrine · Pause 1s en bas · Poussée explosive",muscle:"Pectoraux · Deltoïdes antérieurs · Triceps",rir:2,rest:"4 min",yt:"https://www.youtube.com/results?search_query=developpe+couche+barre+bench+press+technique",weeks:[{sets:4,reps:5,rd:"5",load:"~93 kg (85%)"},{sets:4,reps:5,rd:"5",load:"~95 kg"},{sets:4,reps:5,rd:"5",load:"~97,5 kg"},{sets:5,reps:5,rd:"5",load:"~100 kg"},{sets:5,reps:5,rd:"5",load:"~102,5 kg"},{sets:3,reps:5,rd:"5",load:"~82,5 kg (deload)"}]},
+    {id:"V2",name:"Développé Incliné Haltères",sub:"Angle 30-35° · Pause 1s en bas · Portion claviculaire · Frais = pleinement efficace",muscle:"Pectoraux supérieurs · Deltoïdes antérieurs",rir:2,rest:"2,5 min",yt:"https://www.youtube.com/results?search_query=developpe+incline+halteres+pectoraux+technique",weeks:[{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:5,reps:10,rd:"10",load:"Autorégulation"},{sets:5,reps:10,rd:"10",load:"Autorégulation"},{sets:3,reps:10,rd:"10",load:"Autorégulation"}]},
+    {id:"V3",name:"Dips Lestés",sub:"Corps légèrement incliné en avant → pectoraux dominants",muscle:"Pectoraux inférieurs · Triceps",rir:2,rest:"2 min",yt:"https://www.youtube.com/results?search_query=dips+lestes+pectoraux+technique",weeks:[{sets:3,reps:8,rd:"8-10",load:"+7,5 kg"},{sets:3,reps:9,rd:"9-10",load:"+7,5 kg"},{sets:3,reps:10,rd:"10",load:"+10 kg"},{sets:4,reps:10,rd:"10",load:"+10 kg"},{sets:4,reps:10,rd:"10",load:"+12,5 kg"},{sets:2,reps:8,rd:"8",load:"+5 kg (deload)"}]},
+    {id:"V4",name:"Développé Militaire Haltères",sub:"Assis strict · Aucun coup de reins · Amplitude complète",muscle:"Deltoïdes · Trapèzes supérieurs · Triceps",rir:2,rest:"2 min",yt:"https://www.youtube.com/results?search_query=developpe+militaire+halteres+assis+technique",weeks:[{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:4,reps:10,rd:"10",load:"Autorégulation"},{sets:5,reps:10,rd:"10",load:"Autorégulation"},{sets:3,reps:10,rd:"10",load:"Autorégulation"}]},
+    {id:"V5",name:"Élévations Latérales ⭐",sub:"Poulie basse ou machine · Légèrement incliné · Coude semi-fléchi · Pause 1s en haut",muscle:"Deltoïde médian (isolation pure · largeur épaule)",rir:1,rest:"60 sec",yt:"https://www.youtube.com/results?search_query=elevation+laterale+poulie+machine+technique+deltoides",weeks:[{sets:3,reps:15,rd:"15",load:"Léger — focus sensation"},{sets:3,reps:15,rd:"15",load:"Léger — focus sensation"},{sets:3,reps:15,rd:"15",load:"Modéré"},{sets:3,reps:15,rd:"15",load:"Modéré"},{sets:4,reps:15,rd:"15",load:"Modéré"},{sets:2,reps:15,rd:"15",load:"Léger (deload)"}]},
+    {id:"V6",name:"Écarté Poulie Basse (cable fly)",sub:"Amplitude max · Croisement léger · Pause 1s en contraction",muscle:"Pectoraux (faisceau sternal/inférieur)",rir:1,rest:"90 sec",yt:"https://www.youtube.com/results?search_query=cable+fly+ecarte+poulie+basse+pectoraux",weeks:[{sets:3,reps:14,rd:"14",load:"Léger-modéré"},{sets:3,reps:14,rd:"14",load:"Léger-modéré"},{sets:3,reps:14,rd:"14",load:"Léger-modéré"},{sets:3,reps:14,rd:"14",load:"Léger-modéré"},{sets:4,reps:14,rd:"14",load:"Léger-modéré"},{sets:2,reps:14,rd:"14",load:"Léger-modéré"}]},
+    {id:"V7",name:"Rope Pushdown Poulie Haute",sub:"Ouverture complète de la corde en bas · Coudes fixes au corps",muscle:"Triceps (3 chefs)",rir:1,rest:"75 sec",yt:"https://www.youtube.com/results?search_query=triceps+rope+pushdown+technique",weeks:[{sets:3,reps:14,rd:"14",load:"Autorégulation"},{sets:3,reps:14,rd:"14",load:"Autorégulation"},{sets:3,reps:14,rd:"14",load:"Autorégulation"},{sets:3,reps:14,rd:"14",load:"Autorégulation"},{sets:4,reps:14,rd:"14",load:"Autorégulation"},{sets:2,reps:14,rd:"14",load:"Autorégulation"}]},
+    {id:"V8",name:"Tractions AMRAP ⭐",sub:"MAX reps propres · Tracker total 3 séries chaque semaine · Objectif S1 : 25-30 reps",muscle:"Grand dorsal · Biceps · Rhomboïdes (finisher)",rir:0,rest:"2 min",yt:"https://www.youtube.com/results?search_query=tractions+amrap+max+reps+technique",weeks:[{sets:3,reps:0,rd:"MAX",load:"Poids du corps — note ton total S1 !"},{sets:3,reps:0,rd:"MAX",load:"Poids du corps — bats S1"},{sets:3,reps:0,rd:"MAX",load:"Poids du corps — bats S2"},{sets:3,reps:0,rd:"MAX",load:"Poids du corps — bats S3"},{sets:3,reps:0,rd:"MAX",load:"Poids du corps — semaine record"},{sets:3,reps:0,rd:"MAX",load:"Poids du corps — 🏁 TEST FINAL AMRAP"}]},
   ],
 };
 
-const SESSION_NOTES={
-  L:"🦵 Lower Quad Dominant · Squat → Leg Press Uni → Pendulum → Extension → Mollets · ~75 min",
-  M:"💪 Upper Pull · ⭐ Tractions lestées EN PREMIER · Prone Row (banc dédié, 0 érecteurs) · Super Low Row Panatta · ~80 min S5",
-  J:"🍑 Lower Postérieur · RDL → Hip Thrust (bilatéral d'abord) → Bulgarian → Leg Curl → Adducteurs → Mollets · ~75 min",
-  V:"🏋️ Upper Push + AMRAP · Bench → Incliné → Dips → Militaire → Élévations Lat. → Écarté → Pushdown → AMRAP · ~90 min S5",
-};
-
+const SESSION_NOTES={L:"🦵 Lower Quad Dominant · Squat → Leg Press Uni → Pendulum → Extension → Mollets · ~75 min",M:"💪 Upper Pull · ⭐ Tractions lestées EN PREMIER · Prone Row (banc dédié, 0 érecteurs) · Super Low Row Panatta · ~80 min S5",J:"🍑 Lower Postérieur · RDL → Hip Thrust (bilatéral d'abord) → Bulgarian → Leg Curl → Adducteurs → Mollets · ~75 min",V:"🏋️ Upper Push + AMRAP · Bench → Incliné → Dips → Militaire → Élévations Lat. → Écarté → Pushdown → AMRAP · ~90 min S5"};
 const SESSION_COLORS={L:"#E94560",M:"#4ECDC4",J:"#FF9F43",V:"#A8E6CF"};
-const BLOC_META={
-  1:{label:"Phase 1 — Installation & Références",color:"#4ECDC4",emoji:"🔷",desc:"Charges de référence. RIR 2-3. Aucun échec. Construire les patterns moteurs."},
-  2:{label:"Phase 2 — Intensification & Volume", color:"#FF9F43",emoji:"🟠",desc:"Montée en charge progressive. Pause-rep S3. Test intermédiaire tractions fin S4."},
-  3:{label:"Phase 3 — Pic & Décharge",           color:"#FFE66D",emoji:"🟡",desc:"S5 = semaine la plus dure. S6 = DELOAD -40%. Tests finaux tractions lesté + AMRAP."},
-};
+const BLOC_META={1:{label:"Phase 1 — Installation & Références",color:"#4ECDC4",emoji:"🔷",desc:"Charges de référence. RIR 2-3. Aucun échec."},2:{label:"Phase 2 — Intensification & Volume",color:"#FF9F43",emoji:"🟠",desc:"Montée en charge. Pause-rep S3. Test tractions S4."},3:{label:"Phase 3 — Pic & Décharge",color:"#FFE66D",emoji:"🟡",desc:"S5 = pic. S6 = DELOAD -40%. Tests finaux."}};
 function getBloc(w){return w<=2?1:w<=5?2:3;}
-const WEEK_META=[
-  {label:"S1 — Installation",          note:"Charges de référence. RIR 2-3. Aucun échec. Sentir les exercices.",         isDeload:false},
-  {label:"S2 — Montée en charge",       note:"+1 série grands groupes. RIR 2. Effort réel ressenti.",                     isDeload:false},
-  {label:"S3 — Intensification",        note:"Pause-rep sur mouvements lourds. Volume 16 séries/groupe.",                 isDeload:false},
-  {label:"S4 — ⭐ Test intermédiaire",  note:"⭐ TEST INTERMÉDIAIRE tractions lestées en fin de semaine !",               isDeload:false},
-  {label:"S5 — 🔥 Pic de volume",       note:"Semaine la plus dure. 18 séries grands groupes. RIR 1. Tout donner.",       isDeload:false},
-  {label:"S6 — 🏁 Décharge & Tests",    note:"Volume -40%. 🏁 TEST FINAL : max lesté tractions + AMRAP poids du corps.",  isDeload:true},
-];
+const WEEK_META=[{label:"S1 — Installation",note:"Charges de référence. RIR 2-3. Aucun échec.",isDeload:false},{label:"S2 — Montée en charge",note:"+1 série grands groupes. RIR 2.",isDeload:false},{label:"S3 — Intensification",note:"Pause-rep sur mouvements lourds. Volume 16 séries/groupe.",isDeload:false},{label:"S4 — ⭐ Test intermédiaire",note:"⭐ TEST INTERMÉDIAIRE tractions lestées en fin de semaine !",isDeload:false},{label:"S5 — 🔥 Pic de volume",note:"Semaine la plus dure. 18 séries grands groupes. RIR 1.",isDeload:false},{label:"S6 — 🏁 Décharge & Tests",note:"Volume -40%. 🏁 TEST FINAL : max lesté + AMRAP.",isDeload:true}];
 
 let selectedWeek=1,selectedSession="L",appData={},lastExportText="";
 const STORAGE_KEY="fittracker-masse-v2";
@@ -727,8 +312,7 @@ function generateExport(){
   const entry=getEntry(w,s),exercises=EXERCISES[s],recap=buildRecap(s,w);
   const today=new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   let txt="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📊 RAPPORT DE SÉANCE — FITTRACKER\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-  txt+=`📅 ${today}\n📍 Semaine ${w}/6 · Séance ${s} · ${bm.emoji} ${meta.label}\n⚙️ ${meta.note}\n`;
-  txt+=`🏆 Score : ${recap.score}/10${recap.badge?' — '+recap.badge.emoji+' '+recap.badge.label:''}\n\n──── EXERCICES ────\n\n`;
+  txt+=`📅 ${today}\n📍 Semaine ${w}/6 · Séance ${s} · ${bm.emoji} ${meta.label}\n⚙️ ${meta.note}\n🏆 Score : ${recap.score}/10${recap.badge?' — '+recap.badge.emoji+' '+recap.badge.label:''}\n\n──── EXERCICES ────\n\n`;
   exercises.forEach((ex,ei)=>{
     const wd=ex.weeks[w-1],sd=entry.sets?.[ei]||{},st=recap.exStats[ei];
     txt+=`▸ ${ex.name}\n  ${ex.sub}\n  Cible : ${wd.sets}×${wd.rd} · RIR ${ex.rir} · ${ex.rest} · ${wd.load}\n`;
@@ -738,8 +322,7 @@ function generateExport(){
     if(st.avgW){txt+=`  📊 Moy: ${st.avgW}kg`;if(st.prevAvgW)txt+=` (S${w-1}: ${st.prevAvgW}kg)`;if(st.weightTrend!==null){const t=st.weightTrend;txt+=t>0?` ▲+${t.toFixed(1)}kg`:t<0?` ▼${t.toFixed(1)}kg`:' =stable';}txt+='\n';}
     txt+='\n';
   });
-  txt+=`──── RESSENTI ────\n\n😊 Plaisir : ${entry.plaisir!==undefined?entry.plaisir:'—'}/10\n⚡ Énergie : ${entry.fatigue!==undefined?entry.fatigue:'—'}/10\n\n`;
-  txt+=`──── STATS ────\n\n📈 Séries : ${recap.totalDone}/${recap.totalTSets} (${recap.setsRatio}%)\n📈 Reps : ${recap.repsRatio}%\n\n`;
+  txt+=`──── RESSENTI ────\n\n😊 Plaisir : ${entry.plaisir!==undefined?entry.plaisir:'—'}/10\n⚡ Énergie : ${entry.fatigue!==undefined?entry.fatigue:'—'}/10\n\n──── STATS ────\n\n📈 Séries : ${recap.totalDone}/${recap.totalTSets} (${recap.setsRatio}%)\n📈 Reps : ${recap.repsRatio}%\n\n`;
   if(entry.notes)txt+=`──── NOTES ────\n\n${entry.notes}\n\n`;
   const hist=[];for(let pw=1;pw<w;pw++){const pr=buildRecap(s,pw);if(pr.totalDone>0)hist.push({w:pw,sc:pr.score,sr:pr.setsRatio,rr:pr.repsRatio});}
   if(hist.length>0){txt+=`──── HISTORIQUE ${s} ────\n\n`;hist.forEach(h=>{txt+=`  S${h.w}: Score ${h.sc}/10 · ${h.sr}% séries · ${h.rr}% reps\n`;});txt+='\n';}
@@ -762,15 +345,11 @@ function buildRecap(sess,week){
   const exStats=exercises.map((ex,ei)=>{
     const wd=ex.weeks[week-1],isAmrap=wd.reps===0,sd=entry.sets?.[ei]||{},psd=prevEntry.sets?.[ei]||{};
     let doneSets=0,doneReps=0,totalW=0,wCount=0,prevTW=0,prevWC=0;
-    for(let s=0;s<wd.sets;s++){
-      totalTSets++;if(!isAmrap)totalTReps+=wd.reps;
-      if(sd[s]){const r=parseInt(sd[s].reps)||0,ww=parseFloat(sd[s].weight)||0;doneSets++;doneReps+=r;totalDone++;if(!isAmrap)totalDoneReps+=r;if(ww>0){totalW+=ww;wCount++;}}
-    }
+    for(let s=0;s<wd.sets;s++){totalTSets++;if(!isAmrap)totalTReps+=wd.reps;if(sd[s]){const r=parseInt(sd[s].reps)||0,ww=parseFloat(sd[s].weight)||0;doneSets++;doneReps+=r;totalDone++;if(!isAmrap)totalDoneReps+=r;if(ww>0){totalW+=ww;wCount++;}}}
     const ps=week>1?(ex.weeks[week-2]?.sets||wd.sets):wd.sets;
     for(let s=0;s<ps;s++){if(psd[s]){const ww=parseFloat(psd[s].weight)||0;if(ww>0){prevTW+=ww;prevWC++;}}}
     const avgW=wCount>0?(totalW/wCount).toFixed(1):null,prevAvgW=prevWC>0?(prevTW/prevWC).toFixed(1):null;
-    const weightTrend=(avgW&&prevAvgW)?parseFloat(avgW)-parseFloat(prevAvgW):null;
-    return{name:ex.name,doneSets,doneReps,avgW,prevAvgW,weightTrend,isAmrap};
+    return{name:ex.name,doneSets,doneReps,avgW,prevAvgW,weightTrend:(avgW&&prevAvgW)?parseFloat(avgW)-parseFloat(prevAvgW):null,isAmrap};
   });
   const setsRatio=totalTSets>0?Math.round((totalDone/totalTSets)*100):0;
   const repsRatio=totalTReps>0?Math.round((totalDoneReps/totalTReps)*100):(totalDone>0?100:0);
@@ -778,71 +357,37 @@ function buildRecap(sess,week){
   const score=totalDone===0?0:Math.round((setsRatio*0.35+repsRatio*0.35+(plaisir?plaisir*10:50)*0.15+(fatigue?fatigue*10:50)*0.15)/10*10)/10;
   const msgs=[],meta=WEEK_META[week-1];
   if(totalDone>0){
-    if(setsRatio>=95)msgs.push({icon:"✅",text:"Volume parfaitement respecté — toutes les séries réalisées !"});
-    else if(setsRatio>=75)msgs.push({icon:"⚠️",text:`${setsRatio}% du volume complété. Vise 100% la prochaine fois.`});
-    else msgs.push({icon:"🔄",text:`Volume incomplet (${setsRatio}%). Charge trop élevée ou fatigue accumulée ?`});
-    if(repsRatio>=90)msgs.push({icon:"💪",text:"Répétitions au complet — tu maîtrises parfaitement les charges !"});
-    else if(repsRatio>=70)msgs.push({icon:"📊",text:`${repsRatio}% des reps atteintes. Comble progressivement cet écart.`});
+    if(setsRatio>=95)msgs.push({icon:"✅",text:"Volume parfaitement respecté !"});
+    else if(setsRatio>=75)msgs.push({icon:"⚠️",text:`${setsRatio}% du volume complété.`});
+    else msgs.push({icon:"🔄",text:`Volume incomplet (${setsRatio}%). Charge trop élevée ?`});
+    if(repsRatio>=90)msgs.push({icon:"💪",text:"Répétitions au complet !"});
+    else if(repsRatio>=70)msgs.push({icon:"📊",text:`${repsRatio}% des reps atteintes.`});
     const prog=exStats.filter(e=>e.weightTrend!==null&&e.weightTrend>0);
     const regr=exStats.filter(e=>e.weightTrend!==null&&e.weightTrend<0);
-    if(prog.length>0)msgs.push({icon:"📈",text:`Progression charge : ${prog.map(e=>e.name.replace(' ⭐','')).join(", ")} !`});
-    if(regr.length>0)msgs.push({icon:"📉",text:`Charge réduite : ${regr.map(e=>e.name.replace(' ⭐','')).join(", ")}. Fatigue ou technique ?`});
+    if(prog.length>0)msgs.push({icon:"📈",text:`Progression : ${prog.map(e=>e.name.replace(' ⭐','')).join(", ")} !`});
+    if(regr.length>0)msgs.push({icon:"📉",text:`Charge réduite : ${regr.map(e=>e.name.replace(' ⭐','')).join(", ")}.`});
     const amrapTotal=exStats.filter(e=>e.isAmrap).reduce((a,e)=>a+e.doneReps,0);
-    if(amrapTotal>0)msgs.push({icon:"🔢",text:`Total tractions poids corps : ${amrapTotal} reps. Note et bats ce score chaque semaine !`});
+    if(amrapTotal>0)msgs.push({icon:"🔢",text:`Total tractions : ${amrapTotal} reps. Bats ce score chaque semaine !`});
   }
-  if(plaisir!==undefined&&plaisir!==null){
-    if(plaisir>=8)msgs.push({icon:"😍",text:"Tu prends vraiment du plaisir — ce feeling prédit la constance sur la durée !"});
-    else if(plaisir>=6)msgs.push({icon:"😊",text:"Plaisir satisfaisant. La régularité fera le reste."});
-    else if(plaisir>=4)msgs.push({icon:"😐",text:"Plaisir mitigé — check : musique, environnement, ou défi perso à revoir ?"});
-    else msgs.push({icon:"😔",text:"Séance difficile. Si ça dure 2 séances consécutives, analyse avec ton coach."});
-  }
-  if(fatigue!==undefined&&fatigue!==null){
-    if(fatigue>=8)msgs.push({icon:"⚡",text:"Pleine forme ! Pousse les charges en haut de la fourchette."});
-    else if(fatigue>=6)msgs.push({icon:"🔋",text:"Bonne énergie — reste sur cette lancée !"});
-    else if(fatigue>=4)msgs.push({icon:"🪫",text:"Légère fatigue. Check : sommeil, hydratation, repas pré-séance."});
-    else msgs.push({icon:"😴",text:"Fatigue importante — réduis les charges -10% et priorise la récupération."});
-  }
-  if(plaisir&&fatigue&&plaisir<=4&&fatigue<=4)msgs.push({icon:"🚨",text:"ALERTE — Plaisir bas + Énergie basse = repos actif recommandé. Analyse la source."});
-  if(meta.isDeload)msgs.push({icon:"💡",text:"Semaine de décharge — volume réduit volontairement. Ton corps supercompense. Reste léger !"});
-  if(week===4&&sess==='M')msgs.push({icon:"⭐",text:"S4 : Teste ton 1RM lesté tractions en fin de semaine ! Objectif : +32,5 kg minimum."});
-  if(week===6)msgs.push({icon:"🏁",text:"S6 FINAL — Teste ton 1RM lesté ET ton AMRAP poids du corps cette semaine. Bilan 6 semaines !"});
+  if(plaisir!==undefined&&plaisir!==null){if(plaisir>=8)msgs.push({icon:"😍",text:"Tu prends vraiment du plaisir !"});else if(plaisir>=6)msgs.push({icon:"😊",text:"Plaisir satisfaisant."});else if(plaisir>=4)msgs.push({icon:"😐",text:"Plaisir mitigé — check : musique, environnement ?"});else msgs.push({icon:"😔",text:"Séance difficile. Analyse si ça dure."});}
+  if(fatigue!==undefined&&fatigue!==null){if(fatigue>=8)msgs.push({icon:"⚡",text:"Pleine forme !"});else if(fatigue>=6)msgs.push({icon:"🔋",text:"Bonne énergie !"});else if(fatigue>=4)msgs.push({icon:"🪫",text:"Légère fatigue. Check sommeil/hydratation."});else msgs.push({icon:"😴",text:"Fatigue importante — réduis les charges -10%."});}
+  if(plaisir&&fatigue&&plaisir<=4&&fatigue<=4)msgs.push({icon:"🚨",text:"ALERTE — Plaisir bas + Énergie basse = repos actif recommandé."});
+  if(meta.isDeload)msgs.push({icon:"💡",text:"Décharge — volume réduit volontairement. Ton corps supercompense !"});
+  if(week===4&&sess==='M')msgs.push({icon:"⭐",text:"S4 : Teste ton 1RM lesté tractions en fin de semaine !"});
+  if(week===6)msgs.push({icon:"🏁",text:"S6 FINAL — Teste ton 1RM lesté ET ton AMRAP !"});
   let badge=null;
-  if(totalDone>0){
-    if(score>=8.5)badge={emoji:"🏆",label:"Performance Elite",color:"#FFD700"};
-    else if(score>=7)badge={emoji:"🥈",label:"Très Bonne Séance",color:"#C0C0C0"};
-    else if(score>=5.5)badge={emoji:"🥉",label:"Bonne Séance",color:"#CD7F32"};
-    else if(score>=4)badge={emoji:"💪",label:"T'es venu !",color:"#4ECDC4"};
-    else badge={emoji:"🫀",label:"Le venir compte !",color:"#FF6B6B"};
-  }
+  if(totalDone>0){if(score>=8.5)badge={emoji:"🏆",label:"Performance Elite",color:"#FFD700"};else if(score>=7)badge={emoji:"🥈",label:"Très Bonne Séance",color:"#C0C0C0"};else if(score>=5.5)badge={emoji:"🥉",label:"Bonne Séance",color:"#CD7F32"};else if(score>=4)badge={emoji:"💪",label:"T'es venu !",color:"#4ECDC4"};else badge={emoji:"🫀",label:"Le venir compte !",color:"#FF6B6B"};}
   return{msgs,setsRatio,repsRatio,score,exStats,totalDone,totalTSets,totalTReps,totalDoneReps,badge};
 }
 
-function updateMeta(field,val){
-  const key=getKey(selectedWeek,selectedSession);
-  if(!appData[key])appData[key]={};
-  appData[key][field]=(field==='plaisir'||field==='fatigue')?parseInt(val):val;
-  saveData();refreshRecap();
-  if(field==='plaisir')document.getElementById('plaisir-val').innerHTML=val+'<span>/10</span>';
-  if(field==='fatigue')document.getElementById('fatigue-val').innerHTML=val+'<span>/10</span>';
-}
-function updateSet(eIdx,sIdx,field,val){
-  const key=getKey(selectedWeek,selectedSession);
-  if(!appData[key])appData[key]={};
-  if(!appData[key].sets)appData[key].sets={};
-  if(!appData[key].sets[eIdx])appData[key].sets[eIdx]={};
-  if(!appData[key].sets[eIdx][sIdx])appData[key].sets[eIdx][sIdx]={};
-  appData[key].sets[eIdx][sIdx][field]=val;
-  saveData();refreshRecap();
-}
+function updateMeta(field,val){const key=getKey(selectedWeek,selectedSession);if(!appData[key])appData[key]={};appData[key][field]=(field==='plaisir'||field==='fatigue')?parseInt(val):val;saveData();refreshRecap();if(field==='plaisir')document.getElementById('plaisir-val').innerHTML=val+'<span>/10</span>';if(field==='fatigue')document.getElementById('fatigue-val').innerHTML=val+'<span>/10</span>';}
+function updateSet(eIdx,sIdx,field,val){const key=getKey(selectedWeek,selectedSession);if(!appData[key])appData[key]={};if(!appData[key].sets)appData[key].sets={};if(!appData[key].sets[eIdx])appData[key].sets[eIdx]={};if(!appData[key].sets[eIdx][sIdx])appData[key].sets[eIdx][sIdx]={};appData[key].sets[eIdx][sIdx][field]=val;saveData();refreshRecap();}
 function updateRangeStyle(el,color){const p=((el.value-1)/9)*100;el.style.background=`linear-gradient(to right,${color} ${p}%,#1e3a5a ${p}%)`;}
 
 function selectWeek(w){selectedWeek=w;renderWeekGrid();renderInfoBar();renderExercises();refreshRessenti();refreshRecap();refreshChart();closeExportPreview();}
 function selectSession(s){
   selectedSession=s;
-  ['L','M','J','V'].forEach(x=>{
-    const t=document.getElementById('tab-'+x);if(!t)return;
-    x===s?(t.style.background=SESSION_COLORS[s],t.style.color='#060a14',t.style.borderColor=SESSION_COLORS[s]):(t.style.background='#080f1e',t.style.color='#4a7a9b',t.style.borderColor='#0f2040');
-  });
+  ['L','M','J','V'].forEach(x=>{const t=document.getElementById('tab-'+x);if(!t)return;x===s?(t.style.background=SESSION_COLORS[s],t.style.color='#060a14',t.style.borderColor=SESSION_COLORS[s]):(t.style.background='#080f1e',t.style.color='#4a7a9b',t.style.borderColor='#0f2040');});
   document.getElementById('session-note').textContent=SESSION_NOTES[s];
   renderExercises();refreshRessenti();refreshRecap();closeExportPreview();
 }
@@ -851,12 +396,8 @@ function renderWeekGrid(){
   for(let w=1;w<=6;w++){
     const meta=WEEK_META[w-1],bm=BLOC_META[getBloc(w)],active=w===selectedWeek;
     const hasAny=['L','M','J','V'].some(s=>{const e=appData[getKey(w,s)];return e?.sets&&Object.keys(e.sets).some(k=>Object.keys(e.sets[k]).length>0);});
-    const btn=document.createElement('button');
-    btn.className='week-btn';btn.textContent='S'+w;
-    btn.style.background=active?bm.color+'20':'#080f1e';
-    btn.style.color=active?bm.color:'#4a7a9b';
-    btn.style.border=active?`2px solid ${bm.color}`:'2px solid #0f2040';
-    btn.onclick=()=>selectWeek(w);
+    const btn=document.createElement('button');btn.className='week-btn';btn.textContent='S'+w;
+    btn.style.background=active?bm.color+'20':'#080f1e';btn.style.color=active?bm.color:'#4a7a9b';btn.style.border=active?`2px solid ${bm.color}`:'2px solid #0f2040';btn.onclick=()=>selectWeek(w);
     if(meta.isDeload){const d=document.createElement('span');d.className='week-dot-top';btn.appendChild(d);}
     if(hasAny){const d=document.createElement('span');d.className='week-dot-bot';d.style.background=bm.color;btn.appendChild(d);}
     grid.appendChild(btn);
@@ -865,7 +406,7 @@ function renderWeekGrid(){
 function renderInfoBar(){
   const meta=WEEK_META[selectedWeek-1],bm=BLOC_META[getBloc(selectedWeek)],bar=document.getElementById('info-bar');
   bar.style.borderColor=bm.color+'33';
-  bar.innerHTML=`<div class="info-bloc" style="color:${bm.color}">${bm.emoji} ${meta.label}</div><div class="info-desc">${meta.note}</div>${meta.isDeload?`<div class="deload-badge">⚡ DÉCHARGE — Volume -40% · Tests finaux cette semaine</div>`:''}`;
+  bar.innerHTML=`<div class="info-bloc" style="color:${bm.color}">${bm.emoji} ${meta.label}</div><div class="info-desc">${meta.note}</div>${meta.isDeload?`<div class="deload-badge">⚡ DÉCHARGE — Volume -40% · Tests finaux</div>`:''}`;
 }
 function renderExercises(){
   const exercises=EXERCISES[selectedSession],week=selectedWeek,entry=getEntry(week,selectedSession);
@@ -875,43 +416,15 @@ function renderExercises(){
   exercises.forEach((ex,eIdx)=>{
     const wd=ex.weeks[week-1],setData=entry.sets?.[eIdx]||{},exStat=recap.exStats[eIdx],isAmrap=wd.reps===0;
     let trendHtml='';
-    if(exStat?.weightTrend!==null&&exStat?.weightTrend!==undefined){
-      const t=exStat.weightTrend,col=t>0?'#4ECDC4':t<0?'#FF6B6B':'#4a7a9b',bg=t>0?'#4ECDC422':t<0?'#FF6B6B22':'#4a7a9b22';
-      trendHtml=`<span class="trend-badge" style="background:${bg};color:${col}">${t>0?`▲ +${t.toFixed(1)} kg`:t<0?`▼ ${t.toFixed(1)} kg`:'= Stable'}</span>`;
-    }
+    if(exStat?.weightTrend!==null&&exStat?.weightTrend!==undefined){const t=exStat.weightTrend,col=t>0?'#4ECDC4':t<0?'#FF6B6B':'#4a7a9b',bg=t>0?'#4ECDC422':t<0?'#FF6B6B22':'#4a7a9b22';trendHtml=`<span class="trend-badge" style="background:${bg};color:${col}">${t>0?`▲ +${t.toFixed(1)} kg`:t<0?`▼ ${t.toFixed(1)} kg`:'= Stable'}</span>`;}
     const rirFg=rirC[ex.rir]||'#4a7a9b';
     let setsHtml='<tr>';['Série','Cible','Reps réelles','Charge (kg)','✓'].forEach(h=>{setsHtml+=`<th>${h}</th>`;});setsHtml+='</tr>';
     for(let sIdx=0;sIdx<wd.sets;sIdx++){
-      const sd=setData[sIdx]||{},doneReps=parseInt(sd.reps)||0;
-      const repsOk=isAmrap?(sd.reps&&doneReps>0):(sd.reps&&doneReps>=wd.reps),hasBoth=sd.reps&&sd.weight;
-      setsHtml+=`<tr>
-        <td class="set-num" style="color:${sc}">S${sIdx+1}</td>
-        <td class="set-target">${wd.rd}</td>
-        <td><input type="number" min="0" max="99" value="${sd.reps||''}" placeholder="—" class="set-input"
-          style="background:${repsOk?'#4ECDC415':'#0a1525'};border:1px solid ${repsOk?'#4ECDC4':'#0f2040'}"
-          onchange="updateSet(${eIdx},${sIdx},'reps',this.value)" oninput="updateSet(${eIdx},${sIdx},'reps',this.value)"/></td>
-        <td><input type="number" min="0" step="0.5" value="${sd.weight||''}" placeholder="—" class="set-input"
-          style="background:${sd.weight?'#FF9F4315':'#0a1525'};border:1px solid ${sd.weight?'#FF9F43':'#0f2040'}"
-          onchange="updateSet(${eIdx},${sIdx},'weight',this.value)" oninput="updateSet(${eIdx},${sIdx},'weight',this.value)"/></td>
-        <td class="set-ok">${hasBoth?(repsOk?'✅':'⚠️'):'○'}</td>
-      </tr>`;
+      const sd=setData[sIdx]||{},doneReps=parseInt(sd.reps)||0,repsOk=isAmrap?(sd.reps&&doneReps>0):(sd.reps&&doneReps>=wd.reps),hasBoth=sd.reps&&sd.weight;
+      setsHtml+=`<tr><td class="set-num" style="color:${sc}">S${sIdx+1}</td><td class="set-target">${wd.rd}</td><td><input type="number" min="0" max="99" value="${sd.reps||''}" placeholder="—" class="set-input" style="background:${repsOk?'#4ECDC415':'#0a1525'};border:1px solid ${repsOk?'#4ECDC4':'#0f2040'}" onchange="updateSet(${eIdx},${sIdx},'reps',this.value)" oninput="updateSet(${eIdx},${sIdx},'reps',this.value)"/></td><td><input type="number" min="0" step="0.5" value="${sd.weight||''}" placeholder="—" class="set-input" style="background:${sd.weight?'#FF9F4315':'#0a1525'};border:1px solid ${sd.weight?'#FF9F43':'#0f2040'}" onchange="updateSet(${eIdx},${sIdx},'weight',this.value)" oninput="updateSet(${eIdx},${sIdx},'weight',this.value)"/></td><td class="set-ok">${hasBoth?(repsOk?'✅':'⚠️'):'○'}</td></tr>`;
     }
     const card=document.createElement('div');card.className='ex-card';
-    card.innerHTML=`
-      <div class="ex-header">
-        <div class="ex-info">
-          <div class="ex-name-row"><span class="ex-name">${ex.name}</span>${trendHtml}</div>
-          <div class="ex-sub">${ex.sub}</div>
-          <div class="ex-muscle">${ex.muscle}</div>
-          <div class="ex-weight">💡 ${wd.load}${exStat?.avgW?`<span class="ex-weight-avg"> · Moy. : ${exStat.avgW} kg</span>`:''}</div>
-          <div style="display:flex;gap:6px;align-items:center;margin-top:4px;flex-wrap:wrap;">
-            <span class="ex-rir" style="background:${rirFg}22;color:${rirFg}">RIR ${ex.rir}</span>
-            <span class="ex-rest">⏱ ${ex.rest}</span>
-          </div>
-        </div>
-        <a href="${ex.yt}" target="_blank" class="yt-btn">▶ Vidéo</a>
-      </div>
-      <div class="sets-wrap"><table class="sets-table"><tbody>${setsHtml}</tbody></table></div>`;
+    card.innerHTML=`<div class="ex-header"><div class="ex-info"><div class="ex-name-row"><span class="ex-name">${ex.name}</span>${trendHtml}</div><div class="ex-sub">${ex.sub}</div><div class="ex-muscle">${ex.muscle}</div><div class="ex-weight">💡 ${wd.load}${exStat?.avgW?`<span class="ex-weight-avg"> · Moy. : ${exStat.avgW} kg</span>`:''}</div><div style="display:flex;gap:6px;align-items:center;margin-top:4px;flex-wrap:wrap;"><span class="ex-rir" style="background:${rirFg}22;color:${rirFg}">RIR ${ex.rir}</span><span class="ex-rest">⏱ ${ex.rest}</span></div></div><a href="${ex.yt}" target="_blank" class="yt-btn">▶ Vidéo</a></div><div class="sets-wrap"><table class="sets-table"><tbody>${setsHtml}</tbody></table></div>`;
     container.appendChild(card);
   });
 }
@@ -924,47 +437,31 @@ function refreshRessenti(){
 }
 function refreshRecap(){
   const recap=buildRecap(selectedSession,selectedWeek),circ=2*Math.PI*24;
-  const arc=document.getElementById('score-arc'),txt=document.getElementById('score-text');
-  const col=recap.score>=7?'#4ECDC4':recap.score>=5?'#FFE66D':'#FF6B6B';
-  arc.setAttribute('stroke',recap.score>0?col:'#4a7a9b');
-  arc.setAttribute('stroke-dashoffset',recap.score>0?circ*(1-recap.score/10):circ);
+  const arc=document.getElementById('score-arc'),txt=document.getElementById('score-text'),col=recap.score>=7?'#4ECDC4':recap.score>=5?'#FFE66D':'#FF6B6B';
+  arc.setAttribute('stroke',recap.score>0?col:'#4a7a9b');arc.setAttribute('stroke-dashoffset',recap.score>0?circ*(1-recap.score/10):circ);
   txt.textContent=recap.score>0?recap.score:'—';txt.setAttribute('fill',recap.score>0?col:'#4a7a9b');
   const hbb=document.getElementById('header-badge-box');
-  if(recap.badge){hbb.style.display='block';hbb.style.background=recap.badge.color+'18';hbb.style.border=`1px solid ${recap.badge.color}44`;document.getElementById('header-badge-emoji').textContent=recap.badge.emoji;document.getElementById('header-badge-label').textContent=recap.badge.label;document.getElementById('header-badge-label').style.color=recap.badge.color;}
-  else hbb.style.display='none';
+  if(recap.badge){hbb.style.display='block';hbb.style.background=recap.badge.color+'18';hbb.style.border=`1px solid ${recap.badge.color}44`;document.getElementById('header-badge-emoji').textContent=recap.badge.emoji;document.getElementById('header-badge-label').textContent=recap.badge.label;document.getElementById('header-badge-label').style.color=recap.badge.color;}else hbb.style.display='none';
   const rb=document.getElementById('recap-badge');
-  if(recap.badge){rb.style.display='block';rb.style.background=recap.badge.color+'18';rb.style.border=`1px solid ${recap.badge.color}44`;document.getElementById('recap-badge-emoji').textContent=recap.badge.emoji;document.getElementById('recap-badge-label').textContent=recap.badge.label;document.getElementById('recap-badge-label').style.color=recap.badge.color;}
-  else rb.style.display='none';
+  if(recap.badge){rb.style.display='block';rb.style.background=recap.badge.color+'18';rb.style.border=`1px solid ${recap.badge.color}44`;document.getElementById('recap-badge-emoji').textContent=recap.badge.emoji;document.getElementById('recap-badge-label').textContent=recap.badge.label;document.getElementById('recap-badge-label').style.color=recap.badge.color;}else rb.style.display='none';
   const body=document.getElementById('recap-body');
   if(recap.totalDone===0){body.innerHTML=`<div class="recap-empty">✍️ Remplis les séries ci-dessus pour voir l'analyse en temps réel</div>`;return;}
-  const sC=recap.setsRatio>=90?'#4ECDC4':recap.setsRatio>=70?'#FFE66D':'#FF6B6B';
-  const rC=recap.repsRatio>=90?'#4ECDC4':recap.repsRatio>=70?'#FFE66D':'#FF6B6B';
-  body.innerHTML=`
-    <div class="recap-stats">
-      <div class="stat-box"><div class="stat-box-label">Séries complétées</div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${recap.setsRatio}%;background:${sC}"></div></div><div class="stat-box-val">${recap.totalDone}/${recap.totalTSets} <span>(${recap.setsRatio}%)</span></div></div>
-      <div class="stat-box"><div class="stat-box-label">Reps atteintes</div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${recap.repsRatio}%;background:${rC}"></div></div><div class="stat-box-val">${recap.repsRatio}%</div></div>
-    </div>
-    <div class="msg-list">${recap.msgs.map(m=>`<div class="msg-item"><span class="msg-icon">${m.icon}</span><span class="msg-text">${m.text}</span></div>`).join('')}</div>`;
+  const sC=recap.setsRatio>=90?'#4ECDC4':recap.setsRatio>=70?'#FFE66D':'#FF6B6B',rC=recap.repsRatio>=90?'#4ECDC4':recap.repsRatio>=70?'#FFE66D':'#FF6B6B';
+  body.innerHTML=`<div class="recap-stats"><div class="stat-box"><div class="stat-box-label">Séries complétées</div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${recap.setsRatio}%;background:${sC}"></div></div><div class="stat-box-val">${recap.totalDone}/${recap.totalTSets} <span>(${recap.setsRatio}%)</span></div></div><div class="stat-box"><div class="stat-box-label">Reps atteintes</div><div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${recap.repsRatio}%;background:${rC}"></div></div><div class="stat-box-val">${recap.repsRatio}%</div></div></div><div class="msg-list">${recap.msgs.map(m=>`<div class="msg-item"><span class="msg-icon">${m.icon}</span><span class="msg-text">${m.text}</span></div>`).join('')}</div>`;
   refreshChart();
 }
 function refreshChart(){
   const bars=document.getElementById('chart-bars');bars.innerHTML='';
   for(let w=1;w<=6;w++){
     const bm=BLOC_META[getBloc(w)],scores=['L','M','J','V'].map(s=>{const r=buildRecap(s,w);return r.score;}).filter(s=>s>0);
-    const avg=scores.length>0?scores.reduce((a,b)=>a+b,0)/scores.length:0;
-    const h=avg>0?Math.max(6,avg*4.5):5,col=avg>0?(avg>=7?'#4ECDC4':avg>=5?'#FFE66D':'#FF6B6B'):'#1e3a5a',active=w===selectedWeek;
+    const avg=scores.length>0?scores.reduce((a,b)=>a+b,0)/scores.length:0,h=avg>0?Math.max(6,avg*4.5):5,col=avg>0?(avg>=7?'#4ECDC4':avg>=5?'#FFE66D':'#FF6B6B'):'#1e3a5a',active=w===selectedWeek;
     const div=document.createElement('div');div.className='chart-bar-wrap';
     div.innerHTML=`<div class="chart-bar-inner"><div class="chart-bar" style="height:${h}px;background:${col};border:${active?'2px solid #fff':'none'}"></div></div><div class="chart-bar-label" style="color:${active?bm.color:'#4a7a9b'};font-weight:${active?800:400}">S${w}</div>`;
     div.onclick=()=>selectWeek(w);bars.appendChild(div);
   }
 }
-function init(){
-  loadData();renderWeekGrid();renderInfoBar();selectSession('L');
-  refreshRessenti();refreshRecap();refreshChart();setTimeout(showInstallBanner,1500);
-}
-const fl=document.createElement('link');fl.rel='stylesheet';
-fl.href='https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap';
-fl.onerror=()=>{};document.head.appendChild(fl);
+function init(){loadData();renderWeekGrid();renderInfoBar();selectSession('L');refreshRessenti();refreshRecap();refreshChart();setTimeout(showInstallBanner,1500);}
+const fl=document.createElement('link');fl.rel='stylesheet';fl.href='https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap';fl.onerror=()=>{};document.head.appendChild(fl);
 init();
 </script>
 </body>
